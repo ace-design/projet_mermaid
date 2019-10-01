@@ -1,10 +1,13 @@
 package com.projet_t1.ihm;
 
+import com.projet_t1.mermaid_model.Pump;
 import javafx.application.Application;
+import javafx.beans.property.Property;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 
@@ -21,28 +24,30 @@ public class MermaidVisualizer extends Application {
         return intance_mermaid;
     }
 
-    public static Group root;
+    public static Group root = new Group();
 
     @Override
     public void start(Stage primaryStage) {
-        root = new Group();
+
         Scene scene = new Scene(root, 400, 350);
-        Text text = new Text("Prêt à recevoir les données de la pompe à l'adresse \n “http://localhost:8080/pump/{id}/{state}“");
-        text.setTranslateX(30);
-        text.setTranslateY(100);
-        root.getChildren().add(text);
+        Text initial_text = new Text("Prêt à recevoir les données de la pompe à l'adresse \n  “http://localhost:8080/pump/{id}/{state}“");
+        initial_text.setX(50);
+        initial_text.setY(50);
+        root.getChildren().add(initial_text);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Etat de la pompe");
         primaryStage.show();
     }
 
-    public void Refresh(){
+    public void Refresh(Property Prop){
         root.getChildren().clear();
-        Affichage text = new Affichage();
-        text.setTranslateX(30);
-        text.setTranslateY(100);
-        root.getChildren().add(text);
-        }
+        root.getChildren().add((new PumpVisualizer()));
+        Text refreshtext = new Text("La variable " + Prop.getName() + " viens d'être modifiée \nsa nouvelle valeur est : " + Prop.getValue());
+        refreshtext.setY(60);
+        root.getChildren().add(refreshtext);
+
+    }
+
     }
 
 

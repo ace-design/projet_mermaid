@@ -4,7 +4,7 @@ public class Mermaid {
 
     public Mermaid() {
 
-
+        Pump pump_a = new Pump();
     }
 }
 

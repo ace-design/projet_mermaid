@@ -6,21 +6,17 @@ import javafx.scene.text.Text;
 import static com.projet_t1.mermaid_model.Pump.PUMP_NUMBER;
 import static com.projet_t1.mermaid_model.Pump.PUMP_STATUS;
 
+public class PumpVisualizer extends Parent {
 
-public class Affichage extends Parent {
-
-    public String Etat(Boolean etat){
+    public static String Etat(Boolean etat){
         if (etat) {return "Active";}
         else return "Inactive";
     }
 
-    public Affichage() {
-
-        Text text = new Text("La pompe " + PUMP_NUMBER.get() +" est " + Etat(PUMP_STATUS.get()));
-        this.setTranslateX(70);
-        this.setTranslateY(100);
+    public  PumpVisualizer(){
+        Text text = new Text("La pompe " + PUMP_NUMBER.get() + " est " + Etat(PUMP_STATUS.get()) );
+        text.setY(15);
         this.getChildren().add(text);
     }
-
 
 }

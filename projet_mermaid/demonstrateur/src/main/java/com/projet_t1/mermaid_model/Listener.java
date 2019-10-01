@@ -9,7 +9,7 @@ public class Listener {
     //Utilisation d'un runLater() pour exécuter le Refresh dans le thread javaFX
     public Listener(Property Prop){
         Prop.addListener((o, oldValue, newValue) -> Platform.runLater(() -> {
-            MermaidVisualizer.getinstance_mermaid().Refresh();
+            MermaidVisualizer.getinstance_mermaid().Refresh(Prop);
         }));
     }
 }
