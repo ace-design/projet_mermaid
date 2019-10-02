@@ -3,8 +3,6 @@ package com.projet_t1.ihm;
 import javafx.scene.Parent;
 import javafx.scene.text.Text;
 
-import static com.projet_t1.mermaid_model.Pump.PUMP_NUMBER;
-import static com.projet_t1.mermaid_model.Pump.PUMP_STATUS;
 
 public class PumpVisualizer extends Parent {
 

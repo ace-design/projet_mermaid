@@ -1,7 +1,10 @@
 package com.projet_t1.ihm;
 
+import com.projet_t1.mermaid_model.Listener;
+import com.projet_t1.mermaid_model.Mermaid;
 import com.projet_t1.mermaid_model.Pump;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.Property;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -9,7 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
+import static com.projet_t1.mermaid_model.Pump.PUMP_NUMBER;
+import static com.projet_t1.mermaid_model.Pump.PUMP_STATUS;
 
 
 public class MermaidVisualizer extends Application {
@@ -48,7 +52,12 @@ public class MermaidVisualizer extends Application {
 
     }
 
+    public void attach(Mermaid m) {
+        m.accept(this);
     }
+
+
+}
 
 
 

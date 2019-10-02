@@ -1,16 +1,29 @@
 package com.projet_t1.mermaid_model;
 
+import com.projet_t1.ihm.MermaidVisualizer;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.text.Text;
 
-public class Pump extends Mermaid{
+public class Pump implements Visualizable {
 
-    public static BooleanProperty PUMP_STATUS = new SimpleBooleanProperty("", "PUMP_STATUS",false);
-    public static IntegerProperty PUMP_NUMBER = new SimpleIntegerProperty("", "PUMP_NUMBER", 0);
+    private BooleanProperty status;
+    private IntegerProperty number;
 
+    public Pump(int pumpNumber) {
+        this.status = new SimpleBooleanProperty("", "status",false);
+        this.number = new SimpleIntegerProperty("", "number", pumpNumber);
+    }
 
-
+    @Override
+    public void accept(MermaidVisualizer v) {
+        status.addListener((o, oldValue, newValue) -> Platform.runLater(() -> {
+            MermaidVisualizer.getinstance_mermaid().Refresh(status);
+        }));
+        number.addListener((o, oldValue, newValue) -> Platform.runLater(() -> {
+            MermaidVisualizer.getinstance_mermaid().Refresh(number);
+        }));
+    }
 }
