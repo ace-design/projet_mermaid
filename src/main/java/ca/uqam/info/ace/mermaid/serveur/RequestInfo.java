@@ -11,7 +11,7 @@ public class RequestInfo {
 
     @GET
     public Response getinfo() {
-        String output = "Il y a actuellement " + MermaidRegistry.GLOBAL_REGISTRY.size() + " mermaide dans le registre \n ";
+        String output = "Il y a actuellement " + MermaidRegistry.GLOBAL_REGISTRY.size() + " mermaides dans le registre \n ";
         return Response.status(200).entity(output).build();
     }
 
