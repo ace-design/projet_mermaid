@@ -1,27 +1,16 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf200
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Bold;\f2\fnil\fcharset0 Menlo-Regular;
-}
-{\colortbl;\red255\green255\blue255;\red3\green45\blue153;\red0\green0\blue0;\red3\green45\blue153;
-\red15\green112\blue3;}
-{\*\expandedcolortbl;;\cssrgb\c0\c25950\c66514;\cssrgb\c0\c0\c0;\cssrgb\c0\c25950\c66514;
-\csgenericrgb\c5882\c43922\c1176;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww14760\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #032d99}
+span.s1 {font: 12.0px Helvetica; color: #000000}
+span.s2 {color: #000000}
+span.Apple-tab-span {white-space:pre}
 
-\f0\fs24 \cf0 Ce read me est \'e0 \'e9crire\'85\
-\
-\
-Adresse utiles :\
-\
-R\'e9cup\'e9rer le nom d\'92un mermaid : 			
-\f1\b \cf2 http://localhost:8080/mermaid/\{id\}/name\
+Ce read me est à écrire…
 
-\f2\b0 \cf3 Modifier le nom d\'92un mermaid :
-\f1\b \cf2  
-\f0\b0 \cf0  	
-\f1\b \cf4 http://localhost:8080/mermaid/\{id\}/newname/\{name\}\
+Adresse utiles :
 
-\f2\b0 \cf3 Modifier le status de la pompe :	
-\f1\b \cf4 http://localhost:8080/mermaid/\{id\}/pump/newstatus/\{num\}/\{status\}\
-\cf5 \
-}
+Récupérer le nom d’un mermaid : **http://localhost:8080/mermaid/{id}/name**
+
+Modifier le nom d’un mermaid :** ****http://localhost:8080/mermaid/{id}/newname/{name}**
+
+Modifier le status de la pompe :**http://localhost:8080/mermaid/{id}/pump/newstatus/{num}/{status}**
