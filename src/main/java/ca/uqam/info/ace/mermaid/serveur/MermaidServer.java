@@ -14,14 +14,14 @@ public class MermaidServer {
         Server server = new Server(port);
         ServletContextHandler ctx =
                 new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-
-        ctx.setContextPath("/");
+        ctx.setContextPath("/mermaid");
+        ctx.setAllowNullPathInfo(true);
         server.setHandler(ctx);
 
         ServletHolder serHol = ctx.addServlet(ServletContainer.class, "/*");
         serHol.setInitOrder(1);
         serHol.setInitParameter("jersey.config.server.provider.packages",
-                "ca.uqam.info.ace.mermaid");
+                "ca.uqam.info.ace.mermaid.serveur");
         server.start();
 
     }

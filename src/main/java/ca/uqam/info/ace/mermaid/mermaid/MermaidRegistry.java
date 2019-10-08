@@ -7,14 +7,17 @@ public class MermaidRegistry {
 
     public static final MermaidRegistry GLOBAL_REGISTRY = new MermaidRegistry();
 
-    private Map<String, Mermaid> registry = new HashMap<>();
+    private Map<Integer, Mermaid> registry = new HashMap<Integer, Mermaid>();
 
     public void register(Mermaid m) {
-        registry.put(m.getName(), m);
+        registry.put(m.getId(), m);
     }
 
-    public Mermaid fetch(String n) {
+    public Mermaid fetch(Integer n) {
         return registry.get(n);
     }
 
+    public int size(){
+        return(registry.size());
+    }
 }

@@ -12,8 +12,8 @@ public class PumpVisualizer extends Parent {
         else return "Inactive";
     }
 
-    public  PumpVisualizer(){
-        Text text = new Text("La pompe " + MermaidRegistry.GLOBAL_REGISTRY.fetch("1").getPump().getNumber() + " est " + Etat(MermaidRegistry.GLOBAL_REGISTRY.fetch("1").getPump().isStatus()) );
+    public  PumpVisualizer(int id){
+        Text text = new Text("La pompe " + MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getPump().getNumber() + " est " + Etat(MermaidRegistry.GLOBAL_REGISTRY.fetch(1).getPump().isStatus()) );
         text.setY(15);
         this.getChildren().add(text);
     }
