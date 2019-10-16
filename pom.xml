@@ -21,7 +21,7 @@
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
-      <version>11</version>
+      <version>13</version>
       <type>pom</type>
     </dependency>
 
