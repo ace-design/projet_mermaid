@@ -1,11 +1,31 @@
+#Config machine pour le projet :
+
+Java version "13"
+Apache Maven 3.6.2
 
 
-Ce read me est à écrire…
+#Mise en oeuvre :
 
-Adresse utiles :
+depuis le repertoire du projet (présence du fichier POM.xml) executer en ligne de commande
 
-Récupérer le nom d’un mermaid : **http://localhost:8080/mermaid/{id}/name**
+--> mvn package
+--> mvn exec:java
 
-Modifier le nom d’un mermaid :** ****http://localhost:8080/mermaid/{id}/newname/{name}**
+ a l'aide d'un RESTful API (browser, cURL, ...) on agit sur le demonstrateur par des requettes HTTP avec l'adresse suivante
+ 
+ http://localhost:8080/mermaid/...
+ 
+ 
+ 
+#Bibliothèque de requetes :
 
-Modifier le status de la pompe :**http://localhost:8080/mermaid/{id}/pump/newstatus/{num}/{status}**
+Récupérer/Modifier le nom d’un mermaid : 
+  {GET} http://localhost:8080/mermaid/{id}/name
+  {PUT} "name=...(String)" http://localhost:8080/mermaid/{id}/name
+
+Faire plonger le Mermaide : 
+  {PUT} "depth=...(Int)"  http://localhost:8080/mermaid/{id}/dive/
+
+Connaitre le status de la pompe : 
+  {GET} http://localhost:8080/mermaid/{id}/pump/status
+
