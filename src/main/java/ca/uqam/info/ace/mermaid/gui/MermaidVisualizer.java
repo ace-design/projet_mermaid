@@ -2,23 +2,14 @@ package ca.uqam.info.ace.mermaid.gui;
 
 import ca.uqam.info.ace.mermaid.mermaid.Mermaid;
 import ca.uqam.info.ace.mermaid.mermaid.MermaidRegistry;
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
-import javafx.animation.Transition;
-import javafx.animation.TranslateTransition;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class MermaidVisualizer extends Parent {
 
