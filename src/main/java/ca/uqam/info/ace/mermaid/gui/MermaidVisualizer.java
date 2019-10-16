@@ -32,7 +32,7 @@ public class MermaidVisualizer extends Parent {
         this.mermaid = MermaidRegistry.GLOBAL_REGISTRY.fetch(id);
         this.animationVisualizer = new AnimationVisualizer(mermaid);
         buildscene();
-        this.stage.show();
+        //this.stage.show();
     }
 
     public void attach(Mermaid m) {
