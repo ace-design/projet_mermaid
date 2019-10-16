@@ -4,13 +4,12 @@ import ca.uqam.info.ace.mermaid.mermaid.MermaidRegistry;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.net.MalformedURLException;
 
 
 public class StartVisualizer extends Application {
 
     @Override
-    public void start(Stage InfoStage) throws MalformedURLException {
+    public void start(Stage InfoStage) {
 
         for (int i = 1; i <= MermaidRegistry.GLOBAL_REGISTRY.size(); i++) {
             Stage stage = new Stage();
@@ -21,7 +20,7 @@ public class StartVisualizer extends Application {
     }
 
     public  static void Refresh(MermaidVisualizer v){
-        v.buidscene();
+        v.refresh();
     }
 
 

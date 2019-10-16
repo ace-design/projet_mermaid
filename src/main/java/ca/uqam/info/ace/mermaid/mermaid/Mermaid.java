@@ -1,28 +1,35 @@
 package ca.uqam.info.ace.mermaid.mermaid;
 
 import ca.uqam.info.ace.mermaid.gui.MermaidVisualizer;
-import javafx.beans.property.Property;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
+import java.util.ArrayList;
 
 public class Mermaid implements Visualizable {
 
 
     private Integer id;
+    private Integer numberScalarSensor;
     private StringProperty name;
     private Pump pump;
-    private Capteur capteur1;
-    private Capteur capteur2;
-    private Capteur capteur3;
+    private ArrayList<ScalarSensor> listScalarSensor;
+    private IntegerProperty depth;
 
-    public Capteur getCapteur1() {
-        return capteur1;
+
+    public Integer getDepth() {
+        return depth.get();
     }
-    public Capteur getCapteur2() {
-        return capteur2;
+    public void setDepth(Integer depth) {
+        this.depth.set(depth);
     }
-    public Capteur getCapteur3() {
-        return capteur3;
+    public Integer getNumberScalarSensor() {
+        return numberScalarSensor;
+    }
+    public ArrayList<ScalarSensor> getlistScalarSensor() {
+        return listScalarSensor;
     }
     public void setName(String name) {
         this.name.set(name);
@@ -38,12 +45,15 @@ public class Mermaid implements Visualizable {
     }
 
     public Mermaid(Integer id) {
+        this.depth = new SimpleIntegerProperty(0);
+        this.numberScalarSensor=7;
+        this.listScalarSensor= new ArrayList<>();
         this.id = id;
-        this.pump = new Pump(1);
-        this.name = new SimpleStringProperty("", "name", "Mermaide n°"+id.toString());
-        this.capteur1 = new Capteur("capteur1");
-        this.capteur2 = new Capteur("capteur2");
-        this.capteur3 = new Capteur("capteur3");
+        this.pump = new Pump();
+        this.name = new SimpleStringProperty("", "name", "Mermaide "+id.toString());
+        for (int i = 1; i <= numberScalarSensor; i++){
+            this.listScalarSensor.add(new ScalarSensor("scalarSensor"+i));
+        }
     }
 
 
@@ -52,6 +62,7 @@ public class Mermaid implements Visualizable {
         this.pump.accept(v);
         Listener MermaidListener = new Listener();
         MermaidListener.Listener(name,v);
+        MermaidListener.Listener(depth,v);
     }
 }
 

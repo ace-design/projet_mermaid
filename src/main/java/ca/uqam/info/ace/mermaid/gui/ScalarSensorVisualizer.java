@@ -5,9 +5,10 @@ import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
-public class CapteurVisualizer extends Parent {
+public class ScalarSensorVisualizer extends Parent {
 
-    CapteurVisualizer() {
+    public  ScalarSensorVisualizer(int id) {
+
 
     }
 }

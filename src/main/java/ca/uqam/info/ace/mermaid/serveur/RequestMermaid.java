@@ -1,29 +1,49 @@
 package ca.uqam.info.ace.mermaid.serveur;
 
 import ca.uqam.info.ace.mermaid.mermaid.MermaidRegistry;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.IntegerProperty;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("{mermaidId}")
 public class RequestMermaid {
 
+
     @GET
     @Path("name")
     public Response getname(@PathParam("mermaidId") Integer id) {
-        String output = "le mermaid " + id + " a le nom : " + MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getName();
-        return Response.status(200).entity(output).build();
+        try {
+            String output = MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getName().get();
+            return Response.status(200).entity(output).build();
+        } catch (Exception e) {
+            return Response.status(404).build();
+        }
     }
 
-    @GET
-    @Path("newname/{name}")
-    public Response setname(@PathParam("mermaidId") Integer id,@PathParam("name") String name ) {
-        String output = "le mermaid " + id + " a le nouveau nom : " + name;
+    @PUT
+    @Path("name")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String postMethod(@FormParam("name") String name,@PathParam("mermaidId") Integer id) {
         MermaidRegistry.GLOBAL_REGISTRY.fetch(id).setName(name);
-        return Response.status(201).entity(output).build();
+        return  name;
     }
+
+    @PUT
+    @Path("dive")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer postMethod(@FormParam("depth") Integer depth, @PathParam("mermaidId") Integer id) {
+        MermaidRegistry.GLOBAL_REGISTRY.fetch(id).setDepth(depth);
+        return depth;
+    }
+
+
 
 }
+
+
 
 

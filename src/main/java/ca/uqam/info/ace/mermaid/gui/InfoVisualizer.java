@@ -22,12 +22,12 @@ public class InfoVisualizer extends Parent {
         VBox root = new VBox();
         Scene infoscene = new Scene(root, 600, 400);
         Text initial_text = new Text("Les mermaid sont prêt à recevoir les données à l'adresse suivante :\n");
-        Hyperlink link = new Hyperlink("http://localhost:8080/mermaid/info");
+        Hyperlink link = new Hyperlink("http://localhost:8080/mermaid/1/name");
         link.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
                 try {
-                    URI uri = new URI("http://localhost:8080/mermaid/info");
+                    URI uri = new URI("http://localhost:8080/mermaid/1/name");
                     Desktop.getDesktop().browse(uri);
                 } catch (URISyntaxException | IOException e) {
                     e.printStackTrace();

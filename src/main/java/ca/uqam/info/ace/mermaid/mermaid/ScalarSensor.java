@@ -3,7 +3,7 @@ package ca.uqam.info.ace.mermaid.mermaid;
 import ca.uqam.info.ace.mermaid.gui.MermaidVisualizer;
 import javafx.beans.property.*;
 
-public class Capteur implements Visualizable {
+public class ScalarSensor implements Visualizable {
 
     private BooleanProperty status;
     private StringProperty name;
@@ -21,7 +21,7 @@ public class Capteur implements Visualizable {
         this.name.set(name);
     }
 
-    public Capteur(String name) {
+    public ScalarSensor(String name) {
         this.status = new SimpleBooleanProperty("", "status",false);
         this.name = new SimpleStringProperty("", "nameCapteur" ,name);
     }

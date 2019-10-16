@@ -1,6 +1,5 @@
 package ca.uqam.info.ace.mermaid.mermaid;
 
-import ca.uqam.info.ace.mermaid.gui.InfoVisualizer;
 import ca.uqam.info.ace.mermaid.gui.MermaidVisualizer;
 import ca.uqam.info.ace.mermaid.gui.StartVisualizer;
 import javafx.application.Platform;

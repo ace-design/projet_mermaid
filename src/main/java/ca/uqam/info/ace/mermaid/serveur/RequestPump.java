@@ -10,28 +10,26 @@ import javax.ws.rs.core.Response;
 public class RequestPump {
 
 
-    public String Etat(boolean etat){
-        if (etat) {return "Active";}
-        else return "Inactive";
-    }
 
     @GET
-    @Path("status/{num}/")
-    public Response getstatus(@PathParam("mermaidId") Integer id ,@PathParam("num") Integer numero) {
-        boolean etat = MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getPump().isStatus();
-        String output = "la pompe " + numero + " est : " + Etat(etat);
-        return Response.status(200).entity(output).build();
+    @Path("status")
+    public Response getstatus(@PathParam("mermaidId") Integer id) {
+        try {
+            boolean etat = MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getPump().isStatus();
+            return Response.status(200).entity(etat).build();
+        } catch (Exception e) {
+            return Response.status(404).build();
+        }
     }
 
-    @GET
-    @Path("newstatus/{num}/{state}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response setstatus(@PathParam("mermaidId") Integer id ,@PathParam("num") Integer numero, @PathParam("state") Boolean etat) {
-        String output = "la pompe " + numero + " est : " + Etat(etat);
-        MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getPump().setNumber(numero);
-        MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getPump().setStatus(etat);
-        return Response.status(200).entity(output).build();
-    }
+//    @PUT
+//    @Path("status")
+//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+//    @Produces(MediaType.TEXT_PLAIN)
+//    public Boolean postMethod(@FormParam("status") Boolean status, @PathParam("mermaidId") Integer id) {
+//        MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getPump().setStatus(status);
+//        return status;
+//    }
 
 
 
