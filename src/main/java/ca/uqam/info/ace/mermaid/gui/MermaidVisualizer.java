@@ -20,6 +20,7 @@ public class MermaidVisualizer extends Parent {
     private GridPane root;
     private PumpVisualizer pumpVisualizer;
     private AnimationVisualizer animationVisualizer;
+    private ScalarSensorVisualizer scalarSensorVisualizer;
     private Mermaid mermaid;
     private int depthmemory;
 
@@ -31,8 +32,8 @@ public class MermaidVisualizer extends Parent {
         this.pumpVisualizer = new PumpVisualizer(id);
         this.mermaid = MermaidRegistry.GLOBAL_REGISTRY.fetch(id);
         this.animationVisualizer = new AnimationVisualizer(mermaid);
+        this.scalarSensorVisualizer = new ScalarSensorVisualizer(mermaid);
         buildscene();
-        //this.stage.show();
     }
 
     public void attach(Mermaid m) {
@@ -43,7 +44,7 @@ public class MermaidVisualizer extends Parent {
 
         //construction de la scène
         String name = mermaid.getName().get();
-        this.scene = new Scene(root, 400, 350);
+        this.scene = new Scene(root, 500, 400);
         this.stage.setScene(scene);
         this.stage.setTitle(name);
         //contraintes sur le gridPane
@@ -61,13 +62,16 @@ public class MermaidVisualizer extends Parent {
         Text title = new Text("Liste des capteurs : ");
         GridPane.setConstraints(title, 1, 0);
         root.getChildren().add(title);
-        //affichage des 8 lignes disponibles pour l'affichage des capteurs
-        for (int i = 1; i <= mermaid.getNumberScalarSensor(); i++) {
+        //création des 8 lignes disponibles pour l'affichage des capteurs/pompe/...
+        for (int i = 1; i <= 8; i++) {
             root.getRowConstraints().add(rowConstraints);
         }
         //affichage de l'etat de la pompe
         GridPane.setConstraints(pumpVisualizer,1,1);
         root.getChildren().add(pumpVisualizer);
+        //affichage des capteurs scalaire
+        GridPane.setConstraints(scalarSensorVisualizer,1,2);
+        root.getChildren().add(scalarSensorVisualizer);;
         //affichage du ciel
         SkyVisualizer skyVisualizer = new SkyVisualizer();
         root.getChildren().add(skyVisualizer.region());
@@ -90,6 +94,13 @@ public class MermaidVisualizer extends Parent {
         pumpVisualizer = newpumpVisualizer;
         GridPane.setConstraints(pumpVisualizer,1,1);
         root.getChildren().add(pumpVisualizer);
+        //refresh des capteurs
+        root.getChildren().remove(scalarSensorVisualizer);
+        ScalarSensorVisualizer newscalarSensorVisualizer = new ScalarSensorVisualizer(mermaid);
+        scalarSensorVisualizer = newscalarSensorVisualizer;
+        GridPane.setValignment(scalarSensorVisualizer,VPos.TOP);
+        GridPane.setConstraints(scalarSensorVisualizer,1,2);
+        root.getChildren().add(scalarSensorVisualizer);
         //lance l'animation pour chaque appel de nouvelle profondeur
         if (mermaid.getDepth() != depthmemory ){
             animationVisualizer.Dive(mermaid.getDepth());
@@ -97,6 +108,8 @@ public class MermaidVisualizer extends Parent {
             }
         //refresh du nom
         this.stage.setTitle(mermaid.getName().get());
+
+
     }
 
 

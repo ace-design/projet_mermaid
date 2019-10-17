@@ -11,14 +11,14 @@ import javafx.application.Application;
 
 public class Main{
 
-
+    private static int numberOfmermaid = 2;
 
     public static void main(String[] args) throws Exception {
 
         MermaidServer srv = new MermaidServer();
         srv.start(8080);
 
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= numberOfmermaid; i++) {
             Mermaid m = new Mermaid(i);
             MermaidRegistry.GLOBAL_REGISTRY.register(m);
         }

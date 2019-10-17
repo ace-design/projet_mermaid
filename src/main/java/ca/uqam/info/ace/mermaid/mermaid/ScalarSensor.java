@@ -5,9 +5,17 @@ import javafx.beans.property.*;
 
 public class ScalarSensor implements Visualizable {
 
+
+    private IntegerProperty value;
     private BooleanProperty status;
     private StringProperty name;
 
+    public int getValue() {
+        return value.get();
+    }
+    public void setValue(int value) {
+        this.value.set(value);
+    }
     public boolean isStatus() {
         return status.get();
     }
@@ -22,15 +30,17 @@ public class ScalarSensor implements Visualizable {
     }
 
     public ScalarSensor(String name) {
-        this.status = new SimpleBooleanProperty("", "status",false);
-        this.name = new SimpleStringProperty("", "nameCapteur" ,name);
+        this.status = new SimpleBooleanProperty(true);
+        this.name = new SimpleStringProperty(name);
+        this.value = new SimpleIntegerProperty(0);
     }
+
 
     @Override
     public void accept(MermaidVisualizer v) {
         Listener CapteurListener = new Listener();
         CapteurListener.Listener(status,v);
         CapteurListener.Listener(name,v);
-
+        CapteurListener.Listener(value,v);
     }
 }

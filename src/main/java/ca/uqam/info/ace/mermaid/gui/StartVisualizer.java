@@ -59,11 +59,6 @@ public class StartVisualizer extends Application {
 
     }
 
-    public static void Refresh (MermaidVisualizer v){
-        v.refresh();
-    }
-
-
 }
 
 

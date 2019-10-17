@@ -19,7 +19,7 @@ depuis le repertoire du projet (présence du fichier POM.xml) executer en ligne 
  
 #Bibliothèque de requetes :
 
-Récupérer/Modifier le nom d’un mermaid : 
+Récupérer/Modifier le nom du mermaid n°{id} :
   {GET} http://localhost:8080/mermaid/{id}/name
   {PUT} "name=...(String)" http://localhost:8080/mermaid/{id}/name
 
@@ -28,4 +28,12 @@ Faire plonger le Mermaide :
 
 Connaitre le status de la pompe : 
   {GET} http://localhost:8080/mermaid/{id}/pump/status
+
+Recupérer/Modifier le nom du capteur scalaire n°{id}  :
+  {GET} http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
+  {PUT} "name=...(Sring)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
+
+ Recupérer/Modifier le status du capteur scalaire n°{id}  :
+  {GET} http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/status
+  {PUT} "status=...(Boolean)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/status
 

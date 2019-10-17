@@ -18,7 +18,6 @@ public class Mermaid implements Visualizable {
     private ArrayList<ScalarSensor> listScalarSensor;
     private IntegerProperty depth;
 
-
     public Integer getDepth() {
         return depth.get();
     }
@@ -46,12 +45,12 @@ public class Mermaid implements Visualizable {
 
     public Mermaid(Integer id) {
         this.depth = new SimpleIntegerProperty(0);
-        this.numberScalarSensor=7;
+        this.numberScalarSensor=4;
         this.listScalarSensor= new ArrayList<>();
         this.id = id;
         this.pump = new Pump();
         this.name = new SimpleStringProperty("", "name", "Mermaide "+id.toString());
-        for (int i = 1; i <= numberScalarSensor; i++){
+        for (int i = 0; i <= numberScalarSensor-1; i++){
             this.listScalarSensor.add(new ScalarSensor("scalarSensor"+i));
         }
     }
@@ -60,6 +59,9 @@ public class Mermaid implements Visualizable {
     @Override
     public void accept(MermaidVisualizer v) {
         this.pump.accept(v);
+        for (int i = 0; i <= numberScalarSensor-1; i++){
+            this.listScalarSensor.get(i).accept(v);
+        }
         Listener MermaidListener = new Listener();
         MermaidListener.Listener(name,v);
         MermaidListener.Listener(depth,v);
