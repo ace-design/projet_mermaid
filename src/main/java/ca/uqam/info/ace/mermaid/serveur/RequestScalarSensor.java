@@ -54,5 +54,25 @@ import javax.ws.rs.core.Response;
         return name;
     }
 
+        @GET
+        @Path("value")
+        public Response getvalue(@PathParam("mermaidId") Integer mermaidId,@PathParam("id") Integer id ) {
+            try {
+                Integer value = MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistScalarSensor().get(id).getValue();
+                return Response.status(200).entity(value).build();
+            } catch (Exception e) {
+                return Response.status(404).build();
+            }
+        }
+
+        @PUT
+        @Path("value")
+        @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+        @Produces(MediaType.TEXT_PLAIN)
+        public Integer postMethod(@FormParam("value") Integer value, @PathParam("mermaidId") Integer mermaidId, @PathParam("id") Integer id) {
+            MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistScalarSensor().get(id).setValue(value);
+            return value;
+        }
+
 }
 

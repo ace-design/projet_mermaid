@@ -20,20 +20,24 @@ depuis le repertoire du projet (présence du fichier POM.xml) executer en ligne 
 #Bibliothèque de requetes :
 
 Récupérer/Modifier le nom du mermaid n°{id} :
-  {GET} http://localhost:8080/mermaid/{id}/name
-  {PUT} "name=...(String)" http://localhost:8080/mermaid/{id}/name
+  |GET| http://localhost:8080/mermaid/{id}/name
+  |PUT| "name=...(String)" http://localhost:8080/mermaid/{id}/name
 
 Faire plonger le Mermaide : 
-  {PUT} "depth=...(Int)"  http://localhost:8080/mermaid/{id}/dive/
+  |PUT|} "depth=...(Int)"  http://localhost:8080/mermaid/{id}/dive/
 
 Connaitre le status de la pompe : 
-  {GET} http://localhost:8080/mermaid/{id}/pump/status
+  |GET| http://localhost:8080/mermaid/{id}/pump/status
 
 Recupérer/Modifier le nom du capteur scalaire n°{id}  :
-  {GET} http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
-  {PUT} "name=...(Sring)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
+  |GET| http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
+  |PUT| "name=...(Sring)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
 
- Recupérer/Modifier le status du capteur scalaire n°{id}  :
-  {GET} http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/status
-  {PUT} "status=...(Boolean)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/status
+Recupérer/Modifier le status du capteur scalaire n°{id}  :
+  |GET| http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/status
+  |PUT| "status=...(Boolean)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/status
+
+Recupérer/Modifier le status du capteur scalaire n°{id}  :
+  |GET| http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/value
+  |PUT| "value=...(Integer)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/value
 
