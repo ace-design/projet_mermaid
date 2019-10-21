@@ -11,7 +11,6 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.awt.*;
 import java.io.IOException;

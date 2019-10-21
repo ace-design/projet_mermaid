@@ -115,11 +115,9 @@ public class MermaidVisualizer extends Parent {
             animationVisualizer.Dive(mermaid.getDepth());
             depthmemory= mermaid.getDepth();
             }
-        
+
         //refresh du nom du mermaid
         this.stage.setTitle(mermaid.getName().get());
-
-
     }
 
 

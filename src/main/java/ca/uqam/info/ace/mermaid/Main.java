@@ -22,7 +22,6 @@ public class Main{
             Mermaid m = new Mermaid(i);
             MermaidRegistry.GLOBAL_REGISTRY.register(m);
         }
-         StartVisualizer startVisualizer = new StartVisualizer();
          Application.launch(StartVisualizer.class);
 
     }

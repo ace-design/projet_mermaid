@@ -20,4 +20,5 @@ public class MermaidRegistry {
     public int size(){
         return(registry.size());
     }
+
 }
