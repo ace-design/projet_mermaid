@@ -1,7 +1,6 @@
 package ca.uqam.info.ace.mermaid.serveur;
 
 import ca.uqam.info.ace.mermaid.mermaid.MermaidRegistry;
-import javafx.beans.property.IntegerProperty;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -35,9 +34,15 @@ public class RequestMermaid {
     @Path("dive")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public Integer postMethod(@FormParam("depth") Integer depth, @PathParam("mermaidId") Integer id) {
-        MermaidRegistry.GLOBAL_REGISTRY.fetch(id).setDepth(depth);
-        return depth;
+    public Response postMethod(@FormParam("depth") Integer depth, @PathParam("mermaidId") Integer id) {
+        if ( depth >= 0 && depth <= MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getDepthMax()) {
+            MermaidRegistry.GLOBAL_REGISTRY.fetch(id).setDepth(depth);
+            return Response.status(200).entity(depth).build();
+        }
+        else {
+            return Response.status(400).build();
+        }
+
     }
 
 

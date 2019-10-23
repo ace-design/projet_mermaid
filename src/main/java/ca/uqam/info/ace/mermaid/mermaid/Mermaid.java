@@ -5,11 +5,11 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 public class Mermaid implements Visualizable {
-
 
     private Integer id;
     private Integer numberScalarSensor;
@@ -17,7 +17,11 @@ public class Mermaid implements Visualizable {
     private Pump pump;
     private ArrayList<ScalarSensor> listScalarSensor;
     private IntegerProperty depth;
+    private Integer depthMax;
 
+    public Integer getDepthMax() {
+        return depthMax;
+    }
     public Integer getDepth() {
         return depth.get();
     }
@@ -43,15 +47,19 @@ public class Mermaid implements Visualizable {
         return pump;
     }
 
-    public Mermaid(Integer id) {
-        this.depth = new SimpleIntegerProperty(0);
-        this.numberScalarSensor=4;
-        this.listScalarSensor= new ArrayList<>();
-        this.id = id;
+    public Mermaid(JSONObject mermaidObject) {
+
+        this.depthMax = ((Long) mermaidObject.get("depthMax")).intValue();
+        this.depth = new SimpleIntegerProperty(((Long) mermaidObject.get("depth")).intValue());
+        this.id = ((Long) mermaidObject.get("id")).intValue();
         this.pump = new Pump();
-        this.name = new SimpleStringProperty("", "name", "Mermaide "+id.toString());
+        this.name = new SimpleStringProperty((String) mermaidObject.get("name"));
+        JSONArray scalarSensorArray = (JSONArray) mermaidObject.get("scalarSensor");
+        this.numberScalarSensor=scalarSensorArray.size();
+        this.listScalarSensor= new ArrayList<>();
         for (int i = 0; i <= numberScalarSensor-1; i++){
-            this.listScalarSensor.add(new ScalarSensor("scalarSensor"+i));
+            JSONObject sensor = (JSONObject) scalarSensorArray.get(i);
+            this.listScalarSensor.add(new ScalarSensor( (String) sensor.get("name"),(Boolean) sensor.get("status"),((Long) sensor.get("value")).doubleValue()));
         }
     }
 

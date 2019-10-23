@@ -6,11 +6,11 @@ import javafx.beans.property.*;
 public class ScalarSensor implements Visualizable {
 
 
-    private IntegerProperty value;
+    private DoubleProperty value;
     private BooleanProperty status;
     private StringProperty name;
 
-    public int getValue() {
+    public double getValue() {
         return value.get();
     }
     public void setValue(int value) {
@@ -29,10 +29,10 @@ public class ScalarSensor implements Visualizable {
         this.name.set(name);
     }
 
-    public ScalarSensor(String name) {
-        this.status = new SimpleBooleanProperty(true);
+    public ScalarSensor(String name, Boolean status, Double value) {
+        this.status = new SimpleBooleanProperty(status);
         this.name = new SimpleStringProperty(name);
-        this.value = new SimpleIntegerProperty(0);
+        this.value = new SimpleDoubleProperty(value);
     }
 
 

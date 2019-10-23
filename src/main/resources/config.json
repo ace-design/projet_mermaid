@@ -1,0 +1,53 @@
+{
+  "port" : 8080,
+  "mermaids":[
+    {
+      "id": 616,
+      "name": "LeTriomphant",
+      "depth": 1000,
+      "depthMax": 2000,
+      "scalarSensor": [
+        {"name" :"temperature", "status": true, "value": 10},
+        {"name" :"pressure", "status": true, "value": 100},
+        {"name" :"light", "status": true, "value": 5},
+        {"name" :"salinity", "status": true, "value": 3}
+      ]
+    },
+    {
+      "id": 617,
+      "name": "LeTéméraire",
+      "depth": 0,
+      "depthMax": 2000,
+      "scalarSensor": [
+        {"name" :"temperature", "status": true, "value": 15},
+        {"name" :"pressure", "status": true, "value": 1},
+        {"name" :"light", "status": true, "value": 20},
+        {"name" :"salinity", "status": true, "value": 3}
+    ]
+    },
+    {
+      "id": 618,
+      "name": "LeVigilant",
+      "depth": 0,
+      "depthMax": 2000,
+      "scalarSensor": [
+        {"name" :"temperature", "status": true, "value": 15},
+        {"name" :"pressure", "status": true, "value": 1},
+        {"name" :"light", "status": true, "value": 20},
+        {"name" :"salinity", "status": true, "value": 3}
+      ]
+    },
+    {
+      "id": 619,
+      "name": "LeTerrible",
+      "depth": 1500,
+      "depthMax": 2000,
+      "scalarSensor": [
+        {"name" :"temperature", "status": true, "value": 5},
+        {"name" :"pressure", "status": true, "value": 150},
+        {"name" :"light", "status": true, "value": 5},
+        {"name" :"salinity", "status": true, "value": 3}
+      ]
+    }
+  ]
+}

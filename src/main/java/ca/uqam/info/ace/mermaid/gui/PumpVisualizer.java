@@ -11,7 +11,7 @@ public class PumpVisualizer extends Parent {
 
     public PumpVisualizer (Integer id){
         this.id = id;
-        Text text = new Text("La pompe est : "+Etat(MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getPump().isStatus()));
+        Text text = new Text("Pump status : "+Etat(MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getPump().isStatus()));
         this.getChildren().add(text);
     }
 

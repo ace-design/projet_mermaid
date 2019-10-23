@@ -16,6 +16,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class StartVisualizer extends Application {
@@ -41,11 +43,14 @@ public class StartVisualizer extends Application {
         root.getChildren().add(initial_text);
         root.getChildren().add(link);
         root.getChildren().add(text);
-        for (int i = 1; i <= MermaidRegistry.GLOBAL_REGISTRY.size(); i++) {
+        Iterator itr = MermaidRegistry.GLOBAL_REGISTRY.getRegistry().entrySet().iterator();
+        while (itr.hasNext()) {
+            Map.Entry pair = (Map.Entry) itr.next();
+            int id = pair.getKey().hashCode();
             Stage stage = new Stage();
-            MermaidVisualizer mermaidVisualizer = new MermaidVisualizer(i, stage);
-            mermaidVisualizer.attach(MermaidRegistry.GLOBAL_REGISTRY.fetch(i));
-            Button btn = new Button(MermaidRegistry.GLOBAL_REGISTRY.fetch(i).getName().get());
+            MermaidVisualizer mermaidVisualizer = new MermaidVisualizer(id, stage);
+            mermaidVisualizer.attach(MermaidRegistry.GLOBAL_REGISTRY.fetch(id));
+            Button btn = new Button(MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getName().get());
             btn.setOnAction((ActionEvent event) -> {
                 stage.show();
             });

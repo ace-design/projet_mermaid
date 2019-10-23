@@ -58,7 +58,7 @@ import javax.ws.rs.core.Response;
     @Path("value")
     public Response getvalue(@PathParam("mermaidId") Integer mermaidId,@PathParam("id") Integer id ) {
         try {
-            Integer value = MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistScalarSensor().get(id).getValue();
+            Double value = MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistScalarSensor().get(id).getValue();
             return Response.status(200).entity(value).build();
         } catch (Exception e) {
             return Response.status(404).build();
