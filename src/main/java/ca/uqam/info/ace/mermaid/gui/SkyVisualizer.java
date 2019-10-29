@@ -10,9 +10,8 @@ public class SkyVisualizer extends Parent {
         Region sky = new Region();
         GridPane.setConstraints(sky, 0, 0, 1, 1 );
         sky.setStyle("-fx-background-color: azure");
-        sky.setPrefSize(50, 50);
+        sky.setPrefSize(50, 80);
         return (sky);
-
     }
 
 }

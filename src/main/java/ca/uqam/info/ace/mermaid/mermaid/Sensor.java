@@ -1,26 +1,24 @@
 package ca.uqam.info.ace.mermaid.mermaid;
 
 import ca.uqam.info.ace.mermaid.gui.MermaidVisualizer;
+import ca.uqam.info.ace.mermaid.mermaid.laws.Law;
 import javafx.beans.property.*;
 
-public class ScalarSensor implements Visualizable {
+public class Sensor implements Visualizable {
 
 
     private DoubleProperty value;
-    private BooleanProperty status;
     private StringProperty name;
+    private Law law;
 
+    public Law getLaw() {
+        return law;
+    }
     public double getValue() {
         return value.get();
     }
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value.set(value);
-    }
-    public boolean isStatus() {
-        return status.get();
-    }
-    public void setStatus(boolean status) {
-        this.status.set(status);
     }
     public String isName() {
         return name.get();
@@ -29,18 +27,16 @@ public class ScalarSensor implements Visualizable {
         this.name.set(name);
     }
 
-    public ScalarSensor(String name, Boolean status, Double value) {
-        this.status = new SimpleBooleanProperty(status);
+    public Sensor(String name, Double value, Law law ){
         this.name = new SimpleStringProperty(name);
         this.value = new SimpleDoubleProperty(value);
+        this.law = law;
     }
-
 
     @Override
     public void accept(MermaidVisualizer v) {
-        Listener CapteurListener = new Listener();
-        CapteurListener.Listener(status,v);
-        CapteurListener.Listener(name,v);
-        CapteurListener.Listener(value,v);
+        Listener SensorListener = new Listener();
+        SensorListener.Listener(name,v);
+        SensorListener.Listener(value,v);
     }
 }

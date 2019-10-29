@@ -1,16 +1,25 @@
 {
   "port" : 8080,
+
+  "laws" :[
+    { "type" : "clam" },
+    {"type" : "agitated"}
+  ],
+
   "mermaids":[
     {
       "id": 616,
       "name": "LeTriomphant",
-      "depth": 1000,
+      "depth": 0,
       "depthMax": 2000,
+      "speed" : 10,
+      "speedMax": 20,
+      "delay":60,
       "scalarSensor": [
-        {"name" :"temperature", "status": true, "value": 10},
-        {"name" :"pressure", "status": true, "value": 100},
-        {"name" :"light", "status": true, "value": 5},
-        {"name" :"salinity", "status": true, "value": 3}
+        {"name" :"temperature", "law":"calm", "value": 10},
+        {"name" :"pressure", "law": "calm", "value": 100},
+        {"name" :"light", "law": "calm", "value": 5},
+        {"name" :"salinity", "law": "calm", "value": 3}
       ]
     },
     {
@@ -18,11 +27,14 @@
       "name": "LeTéméraire",
       "depth": 0,
       "depthMax": 2000,
+      "speed" : 10,
+      "speedMax": 20,
+      "delay":60,
       "scalarSensor": [
-        {"name" :"temperature", "status": true, "value": 15},
-        {"name" :"pressure", "status": true, "value": 1},
-        {"name" :"light", "status": true, "value": 20},
-        {"name" :"salinity", "status": true, "value": 3}
+        {"name" :"temperature", "law": "calm", "value": 15},
+        {"name" :"pressure", "law": "calm", "value": 1},
+        {"name" :"light", "law": "calm", "value": 20},
+        {"name" :"salinity", "law": "calm", "value": 3}
     ]
     },
     {
@@ -30,11 +42,14 @@
       "name": "LeVigilant",
       "depth": 0,
       "depthMax": 2000,
+      "speed" : 10,
+      "speedMax": 20,
+      "delay":60,
       "scalarSensor": [
-        {"name" :"temperature", "status": true, "value": 15},
-        {"name" :"pressure", "status": true, "value": 1},
-        {"name" :"light", "status": true, "value": 20},
-        {"name" :"salinity", "status": true, "value": 3}
+        {"name" :"temperature", "law": "calm", "value": 15},
+        {"name" :"pressure", "law": "calm", "value": 1},
+        {"name" :"light", "law": "calm", "value": 20},
+        {"name" :"salinity", "law": "calm", "value": 3}
       ]
     },
     {
@@ -42,11 +57,14 @@
       "name": "LeTerrible",
       "depth": 1500,
       "depthMax": 2000,
+      "speed" : 10,
+      "speedMax": 20,
+      "delay":60,
       "scalarSensor": [
-        {"name" :"temperature", "status": true, "value": 5},
-        {"name" :"pressure", "status": true, "value": 150},
-        {"name" :"light", "status": true, "value": 5},
-        {"name" :"salinity", "status": true, "value": 3}
+        {"name" :"temperature", "law": "calm", "value": 5},
+        {"name" :"pressure", "law": "calm", "value": 150},
+        {"name" :"light", "law": "calm", "value": 5},
+        {"name" :"salinity", "law": "calm", "value": 3}
       ]
     }
   ]

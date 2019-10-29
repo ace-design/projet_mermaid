@@ -1,6 +1,7 @@
 package ca.uqam.info.ace.mermaid.mermaid;
 
 import ca.uqam.info.ace.mermaid.gui.MermaidVisualizer;
+import ca.uqam.info.ace.mermaid.mermaid.laws.LawsFactory;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,14 +12,37 @@ import java.util.ArrayList;
 
 public class Mermaid implements Visualizable {
 
+    private Integer delay;
     private Integer id;
-    private Integer numberScalarSensor;
+    private Integer numberSensor;
     private StringProperty name;
     private Pump pump;
-    private ArrayList<ScalarSensor> listScalarSensor;
+    private ArrayList<Sensor> listSensor;
     private IntegerProperty depth;
     private Integer depthMax;
+    private Integer speed;
+    private Integer speedMax;
+    private LawsFactory lawsFactory;
+    private Clock clock;
 
+    public Clock getClock() {
+        return clock;
+    }
+    public Integer getDelay() {
+        return delay;
+    }
+    public void setDelay(Integer delay) {
+        this.delay = delay;
+    }
+    public Integer getSpeedMax() {
+        return speedMax;
+    }
+    public Integer getSpeed() {
+        return speed;
+    }
+    public void setSpeed(Integer speed) {
+        this.speed = speed;
+    }
     public Integer getDepthMax() {
         return depthMax;
     }
@@ -28,11 +52,11 @@ public class Mermaid implements Visualizable {
     public void setDepth(Integer depth) {
         this.depth.set(depth);
     }
-    public Integer getNumberScalarSensor() {
-        return numberScalarSensor;
+    public Integer getNumberSensor() {
+        return numberSensor;
     }
-    public ArrayList<ScalarSensor> getlistScalarSensor() {
-        return listScalarSensor;
+    public ArrayList<Sensor> getlistSensor() {
+        return listSensor;
     }
     public void setName(String name) {
         this.name.set(name);
@@ -48,27 +72,31 @@ public class Mermaid implements Visualizable {
     }
 
     public Mermaid(JSONObject mermaidObject) {
-
+        this.lawsFactory = new LawsFactory();
+        this.delay = ((Long) mermaidObject.get("delay")).intValue();
+        this.speed = ((Long) mermaidObject.get("speed")).intValue();
         this.depthMax = ((Long) mermaidObject.get("depthMax")).intValue();
+        this.speedMax = ((Long) mermaidObject.get("speedMax")).intValue();
         this.depth = new SimpleIntegerProperty(((Long) mermaidObject.get("depth")).intValue());
         this.id = ((Long) mermaidObject.get("id")).intValue();
         this.pump = new Pump();
         this.name = new SimpleStringProperty((String) mermaidObject.get("name"));
         JSONArray scalarSensorArray = (JSONArray) mermaidObject.get("scalarSensor");
-        this.numberScalarSensor=scalarSensorArray.size();
-        this.listScalarSensor= new ArrayList<>();
-        for (int i = 0; i <= numberScalarSensor-1; i++){
+        this.numberSensor =scalarSensorArray.size();
+        this.listSensor = new ArrayList<>();
+        for (int i = 0; i <= numberSensor -1; i++){
             JSONObject sensor = (JSONObject) scalarSensorArray.get(i);
-            this.listScalarSensor.add(new ScalarSensor( (String) sensor.get("name"),(Boolean) sensor.get("status"),((Long) sensor.get("value")).doubleValue()));
+            this.listSensor.add(new Sensor((String) sensor.get("name"),((Long) sensor.get("value")).doubleValue(),lawsFactory.getLaw((String) sensor.get("law"),((Long) sensor.get("value")).doubleValue())));
         }
+        this.clock = new Clock(delay, listSensor);
     }
 
 
     @Override
     public void accept(MermaidVisualizer v) {
         this.pump.accept(v);
-        for (int i = 0; i <= numberScalarSensor-1; i++){
-            this.listScalarSensor.get(i).accept(v);
+        for (int i = 0; i <= numberSensor -1; i++){
+            this.listSensor.get(i).accept(v);
         }
         Listener MermaidListener = new Listener();
         MermaidListener.Listener(name,v);

@@ -19,6 +19,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
+
         //Recuperation du fichier de configuration dans les ressources
         ClassLoader classLoader = Main.class.getClassLoader();
         URL resource = classLoader.getResource("config.json");
