@@ -11,9 +11,13 @@ depuis le repertoire du projet (présence du fichier POM.xml) executer en ligne 
 --> mvn package
 --> mvn exec:java
 
- a l'aide d'un RESTful API (browser, cURL, ...) on agit sur le demonstrateur par des requettes HTTP avec l'adresse suivante
+avant de lancer la simulation vous pouvez definir ses parametre dans un fichier de configuration dans le fichier config.JSON
+dans les ressources du projet
+
+ a l'aide d'un RESTful API (browser, cURL, ...) on peut agir sur le demonstrateur par des requettes HTTP avec l'adresse suivante
  
  http://localhost:8080/mermaid/...
+
  
  
  

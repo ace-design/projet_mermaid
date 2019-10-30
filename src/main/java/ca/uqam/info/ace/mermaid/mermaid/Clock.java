@@ -24,6 +24,7 @@ public class Clock {
     public Clock(int delay, int period, ArrayList<Sensor> listSensor){
         this.clockStatus = false;
         this.delay = delay;
+        this.period = period;
         this.listSensor = listSensor;
         timer = new Timer();
         timer.schedule(new ClockTask(),0,period);

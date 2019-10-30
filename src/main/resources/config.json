@@ -18,9 +18,9 @@
       "speed" : 10,
       "scalarSensor": [
         {"name" :"temperature", "law":"calm", "value": 10},
-        {"name" :"pressure", "law": "calm", "value": 100},
+        {"name" :"pressure", "law": "calm", "value": 10},
         {"name" :"light", "law": "calm", "value": 5},
-        {"name" :"salinity", "law": "calm", "value": 3}
+        {"name" :"salinity", "law": "calm", "value": 10}
       ]
     },
     {
@@ -30,9 +30,9 @@
       "speed" : 10,
       "scalarSensor": [
         {"name" :"temperature", "law": "calm", "value": 15},
-        {"name" :"pressure", "law": "calm", "value": 1},
+        {"name" :"pressure", "law": "calm", "value": 10},
         {"name" :"light", "law": "calm", "value": 20},
-        {"name" :"salinity", "law": "calm", "value": 3}
+        {"name" :"salinity", "law": "calm", "value": 10}
       ]
     },
     {
@@ -42,9 +42,9 @@
       "speed" : 10,
       "scalarSensor": [
         {"name" :"temperature", "law": "calm", "value": 15},
-        {"name" :"pressure", "law": "calm", "value": 1},
+        {"name" :"pressure", "law": "calm", "value": 10},
         {"name" :"light", "law": "calm", "value": 20},
-        {"name" :"salinity", "law": "calm", "value": 3}
+        {"name" :"salinity", "law": "calm", "value": 10}
       ]
     },
     {
