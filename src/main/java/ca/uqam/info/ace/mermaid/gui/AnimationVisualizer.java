@@ -10,11 +10,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import java.awt.event.ActionEvent;
+
 
 public class AnimationVisualizer extends Parent {
 
     private Circle floteur;
-     Mermaid mermaid;
+    private Mermaid mermaid;
 
 
     public AnimationVisualizer(Mermaid m) {
@@ -27,14 +29,17 @@ public class AnimationVisualizer extends Parent {
     }
 
     public void Dive(Integer depthmemory){
+        mermaid.setDiving(true);
         double depthVisuel = (mermaid.getDepth() *((240.0)/mermaid.getDepthMax())); //pour une fenetre de hauteur max 400px, 240 etant la limite du ciel en px
         TranslateTransition transition = new TranslateTransition();
         int gapDepth = Math.abs(mermaid.getDepth()-depthmemory);
         transition.setDuration(Duration.millis(((int)(0.45*gapDepth*(100/mermaid.getSpeed()))+100))); //0.45 coeff directeur d'une droite y -->(100 ; 1000) x -->(0 ; 2000) et 100/speed pour que durée min = 100/20 = 5sc
-        transition.setDuration(Duration.seconds(6));
-        transition.setToY((int) depthVisuel);
+        transition.setToY(depthVisuel);
         transition.setNode(floteur);
         transition.play();
+        transition.setOnFinished(ActionEvent -> Platform.runLater(() -> {
+            mermaid.setDiving(false);
+        }));
     }
 
 }

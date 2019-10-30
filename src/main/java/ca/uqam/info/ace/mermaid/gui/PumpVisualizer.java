@@ -7,8 +7,13 @@ import javafx.scene.text.Text;
 
 public class PumpVisualizer extends Parent {
 
-    public PumpVisualizer (Mermaid mermaid){
-        Text text = new Text("Pump status : "+Etat(mermaid.getPump().isStatus()));
+    public PumpVisualizer (Mermaid mermaid) {
+        if (mermaid.getDiving()) {
+            mermaid.getPump().setStatus(true);
+        } else {
+            mermaid.getPump().setStatus(false);
+        }
+        Text text = new Text("Pump status : " + Etat(mermaid.getPump().isStatus()));
         this.getChildren().add(text);
     }
 

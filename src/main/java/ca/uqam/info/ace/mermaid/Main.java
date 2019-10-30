@@ -36,7 +36,7 @@ public class Main {
         JSONArray mermaidArray = (JSONArray) config.get("mermaids");
         for (int i = 0; i < mermaidArray.size(); i++) {
             JSONObject mermaidObject = (JSONObject) mermaidArray.get(i) ;
-            Mermaid m = new Mermaid(mermaidObject);
+            Mermaid m = new Mermaid(config , mermaidObject);
             MermaidRegistry.GLOBAL_REGISTRY.register(m);
         }
         Application.launch(StartVisualizer.class);

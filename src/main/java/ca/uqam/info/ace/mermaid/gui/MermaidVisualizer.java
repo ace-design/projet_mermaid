@@ -117,8 +117,7 @@ public class MermaidVisualizer extends Parent {
     public void refresh(){
         //refresh du nom du mermaid
         this.stage.setTitle(name +"  Id:"+ id);
-
-//        //refresh de la clock
+        //refresh de la clock
         root.getChildren().remove(clockVisualizer);
         ClockVisualizer newclockVisualizer = new ClockVisualizer(mermaid);
         clockVisualizer = newclockVisualizer;
@@ -144,9 +143,10 @@ public class MermaidVisualizer extends Parent {
         GridPane.setConstraints(pumpVisualizer,1,1);
         root.getChildren().add(pumpVisualizer);
         //lance l'animation pour chaque appel de nouvelle profondeur
-        if ( depthmemory != (mermaid.getDepth()) ){
+        int depthTampon = mermaid.getDepth();
+        if ( depthmemory != depthTampon ){
             animationVisualizer.Dive(depthmemory);
-            depthmemory= mermaid.getDepth();
+            depthmemory = mermaid.getDepth();
         }
 
     }

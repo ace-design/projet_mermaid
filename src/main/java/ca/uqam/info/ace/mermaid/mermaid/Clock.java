@@ -7,6 +7,7 @@ import java.util.TimerTask;
 
 public class Clock {
 
+    private int period;
     private boolean clockStatus ;
     private Timer timer;
     private int delay;
@@ -20,12 +21,12 @@ public class Clock {
     }
 
 
-    public Clock(int delay, ArrayList<Sensor> listSensor){
+    public Clock(int delay, int period, ArrayList<Sensor> listSensor){
         this.clockStatus = false;
         this.delay = delay;
         this.listSensor = listSensor;
         timer = new Timer();
-        timer.schedule(new ClockTask(),0,1*1000);  //period = 1sc , changement de valeur toutes les secondes
+        timer.schedule(new ClockTask(),0,period);
     }
 
      class ClockTask extends TimerTask { ;

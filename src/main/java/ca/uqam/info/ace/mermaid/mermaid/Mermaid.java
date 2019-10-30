@@ -2,16 +2,14 @@ package ca.uqam.info.ace.mermaid.mermaid;
 
 import ca.uqam.info.ace.mermaid.gui.MermaidVisualizer;
 import ca.uqam.info.ace.mermaid.mermaid.laws.LawsFactory;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 public class Mermaid implements Visualizable {
 
+    private Integer periode;
     private Integer delay;
     private Integer id;
     private Integer numberSensor;
@@ -24,15 +22,16 @@ public class Mermaid implements Visualizable {
     private Integer speedMax;
     private LawsFactory lawsFactory;
     private Clock clock;
+    private BooleanProperty diving;
 
+    public void setDiving(Boolean diving) {
+        this.diving.set(diving);
+    }
+    public Boolean getDiving() {
+        return diving.get();
+    }
     public Clock getClock() {
         return clock;
-    }
-    public Integer getDelay() {
-        return delay;
-    }
-    public void setDelay(Integer delay) {
-        this.delay = delay;
     }
     public Integer getSpeedMax() {
         return speedMax;
@@ -46,9 +45,7 @@ public class Mermaid implements Visualizable {
     public Integer getDepthMax() {
         return depthMax;
     }
-    public Integer getDepth() {
-        return depth.get();
-    }
+    public Integer getDepth() { return depth.get(); }
     public void setDepth(Integer depth) {
         this.depth.set(depth);
     }
@@ -71,12 +68,13 @@ public class Mermaid implements Visualizable {
         return pump;
     }
 
-    public Mermaid(JSONObject mermaidObject) {
+    public Mermaid(JSONObject config, JSONObject mermaidObject) {
         this.lawsFactory = new LawsFactory();
-        this.delay = ((Long) mermaidObject.get("delay")).intValue();
+        this.periode =((Long) ((JSONObject) config.get("clock")).get("periode")).intValue();
+        this.delay = ((Long) ((JSONObject) config.get("clock")).get("delay")).intValue();
         this.speed = ((Long) mermaidObject.get("speed")).intValue();
-        this.depthMax = ((Long) mermaidObject.get("depthMax")).intValue();
-        this.speedMax = ((Long) mermaidObject.get("speedMax")).intValue();
+        this.depthMax = ((Long) ((JSONObject) config.get("generalParam")).get("depthMax")).intValue();
+        this.speedMax = ((Long) ((JSONObject) config.get("generalParam")).get("speedMax")).intValue();
         this.depth = new SimpleIntegerProperty(((Long) mermaidObject.get("depth")).intValue());
         this.id = ((Long) mermaidObject.get("id")).intValue();
         this.pump = new Pump();
@@ -88,7 +86,8 @@ public class Mermaid implements Visualizable {
             JSONObject sensor = (JSONObject) scalarSensorArray.get(i);
             this.listSensor.add(new Sensor((String) sensor.get("name"),((Long) sensor.get("value")).doubleValue(),lawsFactory.getLaw((String) sensor.get("law"),((Long) sensor.get("value")).doubleValue())));
         }
-        this.clock = new Clock(delay, listSensor);
+        this.clock = new Clock(delay, periode, listSensor);
+        this.diving = new SimpleBooleanProperty(false);
     }
 
 
@@ -99,6 +98,7 @@ public class Mermaid implements Visualizable {
             this.listSensor.get(i).accept(v);
         }
         Listener MermaidListener = new Listener();
+        MermaidListener.Listener(diving,v);
         MermaidListener.Listener(name,v);
         MermaidListener.Listener(depth,v);
     }

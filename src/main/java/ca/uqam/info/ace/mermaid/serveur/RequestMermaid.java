@@ -57,7 +57,7 @@ public class RequestMermaid {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public Response postSpeed(@FormParam("speed") Integer speed,@PathParam("mermaidId") Integer id) {
-        if ( speed >= 0 && speed <= MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getSpeed()) {
+        if ( speed >= 0 && speed <= MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getSpeedMax()) {
         MermaidRegistry.GLOBAL_REGISTRY.fetch(id).setSpeed(speed);
         return Response.status(200).entity(speed).build();
     }
