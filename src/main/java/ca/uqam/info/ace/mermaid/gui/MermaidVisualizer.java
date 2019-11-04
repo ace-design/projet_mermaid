@@ -143,8 +143,7 @@ public class MermaidVisualizer extends Parent {
         GridPane.setConstraints(pumpVisualizer,1,1);
         root.getChildren().add(pumpVisualizer);
         //lance l'animation pour chaque appel de nouvelle profondeur
-        int depthTampon = mermaid.getDepth();
-        if ( depthmemory != depthTampon ){
+        if ( !depthmemory.equals(mermaid.getDepth()) ){
             animationVisualizer.Dive(depthmemory);
             depthmemory = mermaid.getDepth();
         }

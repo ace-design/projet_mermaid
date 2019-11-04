@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Mermaid implements Visualizable {
 
     private Integer periode;
-    private Integer delay;
+    private IntegerProperty duration;
     private Integer id;
     private Integer numberSensor;
     private StringProperty name;
@@ -71,7 +71,7 @@ public class Mermaid implements Visualizable {
     public Mermaid(JSONObject config, JSONObject mermaidObject) {
         this.lawsFactory = new LawsFactory();
         this.periode =((Long) ((JSONObject) config.get("clock")).get("periode")).intValue();
-        this.delay = ((Long) ((JSONObject) config.get("clock")).get("delay")).intValue();
+        this.duration = new SimpleIntegerProperty (((Long) ((JSONObject) config.get("clock")).get("duration")).intValue());
         this.speed = ((Long) mermaidObject.get("speed")).intValue();
         this.depthMax = ((Long) ((JSONObject) config.get("generalParam")).get("depthMax")).intValue();
         this.speedMax = ((Long) ((JSONObject) config.get("generalParam")).get("speedMax")).intValue();
@@ -84,16 +84,16 @@ public class Mermaid implements Visualizable {
         this.listSensor = new ArrayList<>();
         for (int i = 0; i <= numberSensor -1; i++){
             JSONObject sensor = (JSONObject) scalarSensorArray.get(i);
-            this.listSensor.add(new Sensor((String) sensor.get("name"),((Long) sensor.get("value")).doubleValue(),lawsFactory.getLaw((String) sensor.get("law"),((Long) sensor.get("value")).doubleValue())));
+            this.listSensor.add(new Sensor(this ,(String) sensor.get("name"),((Long) sensor.get("value")).doubleValue(),lawsFactory.getLaw((String) sensor.get("law"),((Long) sensor.get("value")).doubleValue())));
         }
-        this.clock = new Clock(delay, periode, listSensor);
+        this.clock = new Clock(duration, periode, listSensor);
         this.diving = new SimpleBooleanProperty(false);
     }
-
 
     @Override
     public void accept(MermaidVisualizer v) {
         this.pump.accept(v);
+        this.clock.accept(v);
         for (int i = 0; i <= numberSensor -1; i++){
             this.listSensor.get(i).accept(v);
         }

@@ -1,29 +1,37 @@
 package ca.uqam.info.ace.mermaid.mermaid;
 
-import java.awt.*;
+import ca.uqam.info.ace.mermaid.gui.MermaidVisualizer;
+import javafx.beans.property.IntegerProperty;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Clock {
+public class Clock implements Visualizable{
 
     private int period;
     private boolean clockStatus ;
     private Timer timer;
-    private int delay;
+    private IntegerProperty duration;
     private ArrayList<Sensor> listSensor;
 
     public boolean isClockStatus() {
         return clockStatus;
     }
-    public int getDelay() {
-        return delay;
+    public Integer getDuration() {
+        return duration.get();
+    }
+    public void setDuration(Integer duration) {
+        this.duration.set(duration);
+    }
+    public Timer getTimer() {
+        return timer;
     }
 
 
-    public Clock(int delay, int period, ArrayList<Sensor> listSensor){
+    public Clock(IntegerProperty duration, int period, ArrayList<Sensor> listSensor){
         this.clockStatus = false;
-        this.delay = delay;
+        this.duration = duration;
         this.period = period;
         this.listSensor = listSensor;
         timer = new Timer();
@@ -32,24 +40,37 @@ public class Clock {
 
      class ClockTask extends TimerTask { ;
         public void run() {
-            if (delay > 0){
+            if (duration.get() > 0){
                 for (int i = 0; i <= listSensor.size() -1; i++){
                     Sensor sensor = listSensor.get(i);
-                    sensor.setValue(sensor.getLaw().build());
+                    sensor.udapte();
                 }
                 clockStatus = true;
-                delay--;
+                duration.set(duration.get()-1);
             }
-            else {
+            else if (duration.get() == -1){
                 for (int i = 0; i <= listSensor.size() -1; i++){
                     Sensor sensor = listSensor.get(i);
-                    sensor.setValue(sensor.getLaw().build());
+                    sensor.udapte();
                 }
+                clockStatus = true;
+            }
+            else {
                 clockStatus = false;
+                for (int i = 0; i <= listSensor.size() -1; i++){
+                    Sensor sensor = listSensor.get(i);
+                    sensor.udapte();
+                }
                 timer.cancel();
             }
         }
 
+    }
+
+    @Override
+    public void accept(MermaidVisualizer v) {
+        Listener ClockListener = new Listener();
+        ClockListener.Listener(duration,v);
     }
 
 }

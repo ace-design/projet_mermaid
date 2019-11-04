@@ -8,8 +8,14 @@ public class ClockVisualizer extends Parent {
 
     public ClockVisualizer (Mermaid mermaid) {
         if (mermaid.getClock().isClockStatus()) {
-            Text text = new Text("Clock : "+mermaid.getClock().getDelay());
-            this.getChildren().add(text);
+            if (mermaid.getClock().getDuration() == -1){
+                Text text = new Text("Clock : Infinite ") ;
+                this.getChildren().add(text);
+            }
+            else {
+                Text text = new Text("Clock : " + mermaid.getClock().getDuration());
+                this.getChildren().add(text);
+            }
         }
         else {
             Text text = new Text("Clock : Time's up ");

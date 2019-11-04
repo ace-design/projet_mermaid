@@ -1,6 +1,7 @@
 package ca.uqam.info.ace.mermaid.serveur;
 
 import ca.uqam.info.ace.mermaid.mermaid.MermaidRegistry;
+import javafx.beans.property.IntegerProperty;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -100,7 +101,15 @@ public class RequestMermaid {
         else {
             return Response.status(416).build();
         }
+    }
 
+    @PUT
+    @Path("clock")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer postMethod(@FormParam("duration") Integer duration, @PathParam("mermaidId") Integer id) {
+        MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getClock().setDuration(duration);
+        return  duration;
     }
 
 

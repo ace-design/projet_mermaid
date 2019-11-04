@@ -9,13 +9,26 @@ public class LawsFactory {
         if (lawType == null) {
             return null;
         }
-        if (lawType.equalsIgnoreCase("calm")) {
+        if (lawType.equalsIgnoreCase("Temperature")) {
+            return new Temperature(initValue);
+        }
+        else if (lawType.equalsIgnoreCase("Salinity")) {
+            return new Salinity(initValue);
+        }
+        else if (lawType.equalsIgnoreCase("Pressure")) {
+            return new Pressure(initValue);
+        }
+        else if (lawType.equalsIgnoreCase("Light")) {
+            return new Light(initValue);
+        }
+        else if (lawType.equalsIgnoreCase("calm")) {
             return new Calm(initValue);
-
-        } else if (lawType.equalsIgnoreCase("agitated")) {
+        }
+        else if (lawType.equalsIgnoreCase("agitated")) {
             return new Agitated(initValue);
         }
             return null;
         }
     }
+
 
