@@ -61,7 +61,7 @@ import javax.ws.rs.core.Response;
     @Produces(MediaType.TEXT_PLAIN)
     public String postlaw(@FormParam("law") String name, @PathParam("mermaidId") Integer mermaidId, @PathParam("id") Integer id) {
         LawsFactory lawsFactory = new LawsFactory();
-        MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistSensor().get(id).setVariationLaw(lawsFactory.getLaw(name,1.0));
+        MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistSensor().get(id-1).setVariationLaw(lawsFactory.getLaw(name,1.0));
         return name;
     }
 
