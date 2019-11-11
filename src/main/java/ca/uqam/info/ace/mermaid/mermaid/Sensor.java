@@ -14,9 +14,7 @@ public class Sensor implements Visualizable {
     private Law behaviorLaw;
     private LawsFactory lawsFactory;
 
-    public Law getVariationLaw() {
-        return variationLaw;
-    }
+
     public void setVariationLaw(Law variationLaw) {
         this.variationLaw = variationLaw;
     }
@@ -40,14 +38,15 @@ public class Sensor implements Visualizable {
         this.value = new SimpleDoubleProperty(value);
         this.variationLaw = law;
         this.behaviorLaw = lawsFactory.getLaw(name,mermaid.getDepth());
+        setValue(behaviorLaw.build(mermaid.getDepth()));
     }
 
     public void udapte(){
         if (behaviorLaw != null) {
-            this.setValue(behaviorLaw.build(mermaid.getDepth()));
+            setValue(behaviorLaw.build(mermaid.getDepth()));
         }
         if (variationLaw != null) {
-            this.setValue(variationLaw.build(value.get()));
+            setValue(variationLaw.build(value.get()));
         }
     }
 

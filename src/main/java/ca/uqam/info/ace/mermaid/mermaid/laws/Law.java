@@ -5,6 +5,4 @@ public interface Law {
 
     Double build(double value);
 
-    String name();
-
 }

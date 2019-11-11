@@ -20,7 +20,8 @@
         {"name" :"Temperature", "law":"calm", "value": 10},
         {"name" :"Pressure", "law": null, "value": 10},
         {"name" :"Light", "law": "calm", "value": 5},
-        {"name" :"Salinity", "law": "calm", "value": 10}
+        {"name" :"Salinity", "law": "calm", "value": 10},
+        {"name" :"Hydrophone", "law": null, "value": 0}
       ]
     },
     {
@@ -32,7 +33,8 @@
         {"name" :"Temperature", "law": "calm", "value": 15},
         {"name" :"Pressure", "law": "calm", "value": 10},
         {"name" :"Light", "law": "calm", "value": 20},
-        {"name" :"Salinity", "law": "calm", "value": 10}
+        {"name" :"Salinity", "law": "calm", "value": 10},
+        {"name" :"Hydrophone", "law": null, "value": 0}
       ]
     },
     {
@@ -44,7 +46,8 @@
         {"name" :"Temperature", "law": "calm", "value": 15},
         {"name" :"Pressure", "law": "calm", "value": 10},
         {"name" :"Light", "law": "calm", "value": 20},
-        {"name" :"Salinity", "law": "calm", "value": 10}
+        {"name" :"Salinity", "law": "calm", "value": 10},
+        {"name" :"Hydrophone", "law": null, "value": 0}
       ]
     },
     {
@@ -56,7 +59,8 @@
         {"name" :"Temperature", "law": "calm", "value": 5},
         {"name" :"Pressure", "law": "calm", "value": 150},
         {"name" :"Light", "law": "calm", "value": 5},
-        {"name" :"Salinity", "law": "calm", "value": 3}
+        {"name" :"Salinity", "law": "calm", "value": 3},
+        {"name" :"Hydrophone", "law": null, "value": 0}
       ]
     }
   ]

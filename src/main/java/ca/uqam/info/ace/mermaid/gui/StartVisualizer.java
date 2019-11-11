@@ -44,6 +44,7 @@ public class StartVisualizer extends Application {
         root.getChildren().add(link);
         root.getChildren().add(text);
         Iterator itr = MermaidRegistry.GLOBAL_REGISTRY.getRegistry().entrySet().iterator();
+        //Création d'un nouveau stage pour chaque mermaide dans le registre
         while (itr.hasNext()) {
             Map.Entry pair = (Map.Entry) itr.next();
             int id = pair.getKey().hashCode();

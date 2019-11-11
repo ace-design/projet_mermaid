@@ -32,14 +32,17 @@ public class Main {
         MermaidServer srv = new MermaidServer();
         srv.start(port.intValue());
 
-        //Création des mermaids selon le fichier de configuration
+        //Création des mermaids dans le registre selon le fichier de configuration
         JSONArray mermaidArray = (JSONArray) config.get("mermaids");
         for (int i = 0; i < mermaidArray.size(); i++) {
             JSONObject mermaidObject = (JSONObject) mermaidArray.get(i) ;
             Mermaid m = new Mermaid(config , mermaidObject);
             MermaidRegistry.GLOBAL_REGISTRY.register(m);
         }
+
+        //Création des fenetres graphiques associées au differents mermaids
         Application.launch(StartVisualizer.class);
+
     }
 
 
