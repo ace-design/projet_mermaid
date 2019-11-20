@@ -48,8 +48,8 @@ import javax.ws.rs.core.Response;
     @Path("law")
     public Response getlaw(@PathParam("mermaidId") Integer mermaidId,@PathParam("id") Integer id ) {
         try {
-            Double value = MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistSensor().get(id).getValue();
-            return Response.status(200).entity(value).build();
+            String law = MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistSensor().get(id).getVariationLaw();
+            return Response.status(200).entity(law).build();
         } catch (Exception e) {
             return Response.status(404).build();
         }

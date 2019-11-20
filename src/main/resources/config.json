@@ -1,11 +1,6 @@
 {
   "port" : 8080,
 
-  "laws" :[
-    { "type" : "clam" },
-    {"type" : "agitated"}
-  ],
-
   "clock":{"duration" : -1, "periode" : 1000},
 
   "generalParam": {"depthMax": 2000,"speedMax": 20},

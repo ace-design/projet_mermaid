@@ -18,6 +18,7 @@ public class Sensor implements Visualizable {
     public void setVariationLaw(Law variationLaw) {
         this.variationLaw = variationLaw;
     }
+    public String getVariationLaw() { return variationLaw.toString(); }
     public double getValue() {
         return value.get();
     }

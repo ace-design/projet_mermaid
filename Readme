@@ -14,34 +14,53 @@ depuis le repertoire du projet (présence du fichier POM.xml) executer en ligne 
 avant de lancer la simulation vous pouvez definir ses parametre dans un fichier de configuration dans le fichier config.JSON
 dans les ressources du projet
 
- a l'aide d'un RESTful API (browser, cURL, ...) on peut agir sur le demonstrateur par des requettes HTTP avec l'adresse suivante
+ à l'aide d'un navigateur  (browser web, cURL, ...) on peut agir sur le demonstrateur par des requettes HTTP avec l'adresse URL suivante
  
  http://localhost:8080/mermaid/...
 
  
- 
- 
-#Bibliothèque de requetes :
+#Bibliothèque de requêtes :
 
-Récupérer/Modifier le nom du mermaid n°{id} :
-  |GET| http://localhost:8080/mermaid/{id}/name
-  |PUT| "name=...(String)" http://localhost:8080/mermaid/{id}/name
+Affiche le nombre de Mermaid enregistré dans le registre :
 
-Faire plonger le Mermaide : 
-  |PUT|} "depth=...(Int)"  http://localhost:8080/mermaid/{id}/dive/
+    |GET| http://localhost:8080/mermaid/
 
-Connaitre le status de la pompe : 
-  |GET| http://localhost:8080/mermaid/{id}/pump/status
+Mermaid :
 
-Recupérer/Modifier le nom du capteur scalaire n°{id}  :
-  |GET| http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
-  |PUT| "name=...(Sring)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
+    Récupérer/Modifier le nom du mermaid n°{id} :
+      |GET| http://localhost:8080/mermaid/{id}/name
+      |PUT| "name=...(String)" http://localhost:8080/mermaid/{id}/name
 
-Recupérer/Modifier le status du capteur scalaire n°{id}  :
-  |GET| http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/status
-  |PUT| "status=...(Boolean)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/status
+    Faire plonger le Mermaide :
+      |PUT| "depth=...(Int)"  http://localhost:8080/mermaid/{id}/dive/
 
-Recupérer/Modifier le status du capteur scalaire n°{id}  :
-  |GET| http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/value
-  |PUT| "value=...(Integer)"  http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/value
+    Récupérer/Modifier la vitesse de plongée du mermaid n°{id} :
+      |GET| http://localhost:8080/mermaid/{id}/speed
+      |PUT| "speed=...(String)" http://localhost:8080/mermaid/{id}/speed
+
+    Récupérer la vitesse maximale de plongée du mermaid n°{id} :
+      |GET| http://localhost:8080/mermaid/{id}/speedmax
+
+    Récupérer la profondeur maximale de plongée du mermaid n°{id} :
+      |GET| http://localhost:8080/mermaid/{id}/depthmax
+
+    Modifier la durée de l'horloge du mermaid n°{id} :
+      |PUT| "duration=...(Int)" http://localhost:8080/mermaid/{id}/clock
+
+    Recupérer le status de la pompe :
+      |GET| http://localhost:8080/mermaid/{id}/pump/status
+
+Capteur :
+
+    Recupérer/Modifier le nom du capteur scalaire n°{id}  :
+      |GET| http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
+      |PUT| "name=...(Sring)"  http://localhost:8080/mermaid/{id}/sensor/{id}/name
+
+    Recupérer/Modifier la loi associée au capteur n°{id}  :
+      |GET| http://localhost:8080/mermaid/{id}/sensor/{id}/law
+      |PUT| "law=...(String)"  http://localhost:8080/mermaid/{id}sensor/{id}/law
+
+    Recupérer la valeur du capteur scalaire n°{id}  :
+      |GET| http://localhost:8080/mermaid/{id}/sensor/{id}/value
+
 

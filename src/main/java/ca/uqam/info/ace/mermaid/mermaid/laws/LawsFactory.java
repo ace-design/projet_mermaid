@@ -9,10 +9,10 @@ public class LawsFactory {
         if (lawType == null) {
             return null;
         }
-        if (lawType.equalsIgnoreCase("Hydrophone")) {
+        else if (lawType.equalsIgnoreCase("Hydrophone")) {
             return new Hydrophone(initValue);
         }
-        if (lawType.equalsIgnoreCase("Temperature")) {
+        else if (lawType.equalsIgnoreCase("Temperature")) {
             return new Temperature(initValue);
         }
         else if (lawType.equalsIgnoreCase("Salinity")) {

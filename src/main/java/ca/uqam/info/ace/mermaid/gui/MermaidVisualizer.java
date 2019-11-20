@@ -61,7 +61,6 @@ public class MermaidVisualizer extends Parent {
                 new ColumnConstraints(25, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE),
                 new ColumnConstraints(25, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
         root.getColumnConstraints().get(0).setHgrow(Priority.ALWAYS);
-        //root.getRowConstraints().add(rowConstraints);
         root.setGridLinesVisible(false);
         root.setPadding(new Insets(20));
         root.setVgap(5);

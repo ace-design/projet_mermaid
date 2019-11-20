@@ -1,7 +1,6 @@
 package ca.uqam.info.ace.mermaid.mermaid;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class MermaidRegistry {
