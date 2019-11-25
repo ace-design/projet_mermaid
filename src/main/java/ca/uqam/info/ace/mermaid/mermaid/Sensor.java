@@ -49,6 +49,9 @@ public class Sensor implements Visualizable {
         if (variationLaw != null) {
             setValue(variationLaw.build(value.get()));
         }
+        if (value.get() >= 250){
+            mermaid.getMemory().getListe().add((int) value.get());
+        }
     }
 
     @Override

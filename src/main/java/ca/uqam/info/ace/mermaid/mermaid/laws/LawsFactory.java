@@ -27,8 +27,14 @@ public class LawsFactory {
         else if (lawType.equalsIgnoreCase("calm")) {
             return new Calm(depth);
         }
+        else if (lawType.equalsIgnoreCase("earthquake")) {
+            return new Earthquake(initValue);
+        }
         else if (lawType.equalsIgnoreCase("agitated")) {
             return new Agitated(depth);
+        }
+        else if (lawType.equalsIgnoreCase("whale")) {
+            return new Whale(initValue);
         }
             return null;
         }

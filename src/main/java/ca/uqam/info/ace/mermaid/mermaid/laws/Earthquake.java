@@ -9,7 +9,7 @@ public class Earthquake implements Law {
     }
 
     public Double build(double value) {
-        this.value = Math.abs(value + (Math.random() - 0.5) * 100);
+        this.value = Math.abs(this.value + (Math.random() - 0.6) * 100);
         return (this.value);
     }
 

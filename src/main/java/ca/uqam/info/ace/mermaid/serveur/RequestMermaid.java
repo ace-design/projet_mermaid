@@ -6,6 +6,7 @@ import javafx.beans.property.IntegerProperty;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 
 @Path("{mermaidId}")
 public class RequestMermaid {
@@ -89,6 +90,9 @@ public class RequestMermaid {
         }
     }
 
+
+
+
     @PUT
     @Path("dive")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -103,6 +107,8 @@ public class RequestMermaid {
         }
     }
 
+
+
     @PUT
     @Path("clock")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -112,6 +118,16 @@ public class RequestMermaid {
         return  duration;
     }
 
+    @GET
+    @Path("memory")
+    public Response getmemory(@PathParam("mermaidId") Integer id) {
+        try {
+            String output = MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getMemory().getListe().toString();
+            return Response.status(200).entity(output).build();
+        } catch (Exception e) {
+            return Response.status(404).build();
+        }
+    }
 
 
 }

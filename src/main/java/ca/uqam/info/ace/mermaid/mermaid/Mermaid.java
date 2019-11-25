@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Mermaid implements Visualizable {
 
+    private Memory memory;
     private Integer periode;
     private IntegerProperty duration;
     private Integer id;
@@ -24,6 +25,9 @@ public class Mermaid implements Visualizable {
     private Clock clock;
     private BooleanProperty diving;
 
+    public Memory getMemory() {
+        return memory;
+    }
     public void setDiving(Boolean diving) {
         this.diving.set(diving);
     }
@@ -88,6 +92,7 @@ public class Mermaid implements Visualizable {
         }
         this.clock = new Clock(duration, periode, listSensor);
         this.diving = new SimpleBooleanProperty(false);
+        this.memory = new Memory(name.get());
     }
 
     @Override

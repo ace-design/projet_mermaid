@@ -30,10 +30,10 @@ public class AnimationVisualizer extends Parent {
 
     public void Dive(Integer depthmemory){
         mermaid.setDiving(true);
-        double depthVisuel = (mermaid.getDepth() *((240.0)/mermaid.getDepthMax())); //pour une fenetre de hauteur max 400px, 240 etant la limite du ciel en px
+        double depthVisuel = (mermaid.getDepth() *((225.0)/mermaid.getDepthMax())); //pour une fenetre de hauteur max 400px, 225 etant la limite du ciel en px
         TranslateTransition transition = new TranslateTransition();
         int gapDepth = Math.abs(mermaid.getDepth()-depthmemory);
-        transition.setDuration(Duration.millis(((int)(0.45*gapDepth*(100/mermaid.getSpeed()))+100))); //0.45 coeff directeur d'une droite y -->(100 ; 1000) x -->(0 ; 2000) et 100/speed pour que durée min = 100/20 = 5sc
+        transition.setDuration(Duration.millis(((int)(0.5*gapDepth*mermaid.getSpeed())+100)));
         transition.setToY(depthVisuel);
         transition.setNode(floteur);
         transition.play();

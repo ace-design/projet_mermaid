@@ -31,7 +31,7 @@ Mermaid :
       |GET| http://localhost:8080/mermaid/{id}/name
       |PUT| "name=...(String)" http://localhost:8080/mermaid/{id}/name
 
-    Faire plonger le Mermaide :
+    Faire plonger le Mermaid :
       |PUT| "depth=...(Int)"  http://localhost:8080/mermaid/{id}/dive/
 
     Récupérer/Modifier la vitesse de plongée du mermaid n°{id} :

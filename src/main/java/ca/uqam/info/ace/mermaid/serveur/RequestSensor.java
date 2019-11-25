@@ -12,6 +12,17 @@ import javax.ws.rs.core.Response;
     @Path("{mermaidId}/sensor/{id}")
     public class RequestSensor {
 
+        @GET
+        @Path("value")
+        public Response getvalue(@PathParam("mermaidId") Integer mermaidId,@PathParam("id") Integer id ) {
+            try {
+                Double value = MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistSensor().get(id).getValue();
+                return Response.status(200).entity(value).build();
+            } catch (Exception e) {
+                return Response.status(404).build();
+            }
+        }
+
 
     @GET
     @Path("name")
@@ -33,17 +44,6 @@ import javax.ws.rs.core.Response;
         return name;
     }
 
-    @GET
-    @Path("value")
-    public Response getvalue(@PathParam("mermaidId") Integer mermaidId,@PathParam("id") Integer id ) {
-        try {
-            Double value = MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistSensor().get(id).getValue();
-            return Response.status(200).entity(value).build();
-        } catch (Exception e) {
-            return Response.status(404).build();
-        }
-    }
-
 
     @GET
     @Path("law")
@@ -60,9 +60,9 @@ import javax.ws.rs.core.Response;
     @Path("law")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public String postlaw(@FormParam("law") String name, @PathParam("mermaidId") Integer mermaidId, @PathParam("id") Integer id) {
+    public String postlaw(@FormParam("law") String name,@FormParam("initvalue") Integer initvalue, @PathParam("mermaidId") Integer mermaidId, @PathParam("id") Integer id) {
         LawsFactory lawsFactory = new LawsFactory();
-        MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistSensor().get(id-1).setVariationLaw(lawsFactory.getLaw(name,MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getDepth(),0));
+        MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getlistSensor().get(id-1).setVariationLaw(lawsFactory.getLaw(name,MermaidRegistry.GLOBAL_REGISTRY.fetch(mermaidId).getDepth(),initvalue));
         return name;
     }
 

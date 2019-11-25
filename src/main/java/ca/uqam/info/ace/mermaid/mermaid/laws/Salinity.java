@@ -9,11 +9,11 @@ public class Salinity implements Law {
 
     public Salinity(double depth, double initvalue) {
         this.initvalue = initvalue;
-        this.value = initvalue + ((int) 0.01*depth);
+        this.value = initvalue - ( 0.002*depth);
     }
 
     public Double build(double depth) {
-        this.value = initvalue + ((int) 0.01*depth) ;
+        this.value = initvalue - ( 0.002*depth) ;
         return (this.value);
     }
 

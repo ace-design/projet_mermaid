@@ -24,7 +24,7 @@
       "speed" : 10,
       "scalarSensor": [
         {"name" :"Pressure", "law": null, "value": 1},
-        {"name" :"Salinity", "law": null, "value": 3},
+        {"name" :"Salinity", "law": null, "value": 40},
         {"name" :"Hydrophone", "law": null, "value": 0}
       ]
     }
