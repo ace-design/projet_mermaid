@@ -4,31 +4,31 @@ import ca.uqam.info.ace.mermaid.mermaid.Sensor;
 
 public class LawsFactory {
 
-    public Law getLaw(String lawType, double initValue) {
+    public Law getLaw(String lawType,double depth, double initValue) {
 
         if (lawType == null) {
             return null;
         }
         else if (lawType.equalsIgnoreCase("Hydrophone")) {
-            return new Hydrophone(initValue);
+            return new Hydrophone(depth);
         }
         else if (lawType.equalsIgnoreCase("Temperature")) {
-            return new Temperature(initValue);
+            return new Temperature(depth, initValue);
         }
         else if (lawType.equalsIgnoreCase("Salinity")) {
-            return new Salinity(initValue);
+            return new Salinity(depth, initValue);
         }
         else if (lawType.equalsIgnoreCase("Pressure")) {
-            return new Pressure(initValue);
+            return new Pressure(depth);
         }
         else if (lawType.equalsIgnoreCase("Light")) {
-            return new Light(initValue);
+            return new Light(depth);
         }
         else if (lawType.equalsIgnoreCase("calm")) {
-            return new Calm(initValue);
+            return new Calm(depth);
         }
         else if (lawType.equalsIgnoreCase("agitated")) {
-            return new Agitated(initValue);
+            return new Agitated(depth);
         }
             return null;
         }

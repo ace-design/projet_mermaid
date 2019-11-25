@@ -53,7 +53,7 @@ Mermaid :
 Capteur :
 
     Recupérer/Modifier le nom du capteur scalaire n°{id}  :
-      |GET| http://localhost:8080/mermaid/{id}/scalar/sensor/{id}/name
+      |GET| http://localhost:8080/mermaid/{id}/sensor/{id}/name
       |PUT| "name=...(Sring)"  http://localhost:8080/mermaid/{id}/sensor/{id}/name
 
     Recupérer/Modifier la loi associée au capteur n°{id}  :

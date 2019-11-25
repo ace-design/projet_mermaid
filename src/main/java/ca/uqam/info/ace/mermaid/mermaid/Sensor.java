@@ -32,13 +32,13 @@ public class Sensor implements Visualizable {
         this.name.set(name);
     }
 
-    public Sensor(Mermaid mermaid, String name, Double value, Law law ){
+    public Sensor(Mermaid mermaid, String name, Double initvalue, Law law ){
         this.mermaid = mermaid;
         this.lawsFactory = new LawsFactory();
         this.name = new SimpleStringProperty(name);
-        this.value = new SimpleDoubleProperty(value);
+        this.value = new SimpleDoubleProperty(initvalue);
         this.variationLaw = law;
-        this.behaviorLaw = lawsFactory.getLaw(name,mermaid.getDepth());
+        this.behaviorLaw = lawsFactory.getLaw(name,mermaid.getDepth(),initvalue);
         setValue(behaviorLaw.build(mermaid.getDepth()));
     }
 

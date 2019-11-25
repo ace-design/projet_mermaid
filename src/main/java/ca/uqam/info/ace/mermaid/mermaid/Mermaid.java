@@ -84,7 +84,7 @@ public class Mermaid implements Visualizable {
         this.listSensor = new ArrayList<>();
         for (int i = 0; i <= numberSensor -1; i++){
             JSONObject sensor = (JSONObject) scalarSensorArray.get(i);
-            this.listSensor.add(new Sensor(this ,(String) sensor.get("name"),((Long) sensor.get("value")).doubleValue(),lawsFactory.getLaw((String) sensor.get("law"),((Long) sensor.get("value")).doubleValue())));
+            this.listSensor.add(new Sensor(this ,(String) sensor.get("name"),((Long) sensor.get("value")).doubleValue(),lawsFactory.getLaw((String) sensor.get("law"),depth.get(),0)));
         }
         this.clock = new Clock(duration, periode, listSensor);
         this.diving = new SimpleBooleanProperty(false);
