@@ -16,7 +16,7 @@ public class RequestMermaid {
     @Path("name")
     public Response getname(@PathParam("mermaidId") Integer id) {
         try {
-            String output = MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getName().get();
+            String output = MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getName();
             return Response.status(200).entity(output).build();
         } catch (Exception e) {
             return Response.status(404).build();
@@ -31,6 +31,7 @@ public class RequestMermaid {
         MermaidRegistry.GLOBAL_REGISTRY.fetch(id).setName(name);
         return  name;
     }
+
 
     @GET
     @Path("speed")
@@ -91,22 +92,19 @@ public class RequestMermaid {
     }
 
 
-
-
     @PUT
     @Path("dive")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public Response postDive(@FormParam("depth") Integer depth, @PathParam("mermaidId") Integer id) {
-        if ( depth >= 0 && depth <= MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getDepthMax()) {
-            MermaidRegistry.GLOBAL_REGISTRY.fetch(id).setDepth(depth);
+        if ( depth >= 0 && depth <= MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getDepthMax() && !MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getDiving() ) {
+            MermaidRegistry.GLOBAL_REGISTRY.fetch(id).setDepthToGo(depth);
             return Response.status(200).entity(depth).build();
         }
         else {
             return Response.status(416).build();
         }
     }
-
 
 
     @PUT

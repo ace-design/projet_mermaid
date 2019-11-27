@@ -18,7 +18,6 @@ public class MermaidVisualizer extends Parent {
 
 
     private Integer id;
-    private String name;
     private Stage stage;
     private Scene scene;
     private GridPane root;
@@ -28,7 +27,6 @@ public class MermaidVisualizer extends Parent {
     private DepthVisualizer depthVisualiser;
     private ClockVisualizer clockVisualizer;
     private Mermaid mermaid;
-    private Integer depthmemory;
 
 
     public  MermaidVisualizer(Integer id, Stage stage) {
@@ -36,13 +34,11 @@ public class MermaidVisualizer extends Parent {
         this.id = id;
         this.root = new GridPane();
         this.mermaid = MermaidRegistry.GLOBAL_REGISTRY.fetch(id);
-        this.name = mermaid.getName().get();
         this.pumpVisualizer = new PumpVisualizer(mermaid);
         this.animationVisualizer = new AnimationVisualizer(mermaid);
         this.sensorVisualizer = new SensorVisualizer(mermaid);
         this.depthVisualiser = new DepthVisualizer(mermaid);
         this.clockVisualizer = new ClockVisualizer(mermaid);
-        this.depthmemory = 0;
         buildscene();
     }
 
@@ -55,7 +51,7 @@ public class MermaidVisualizer extends Parent {
         //construction de la scène
         this.scene = new Scene(root, 500, 400);
         this.stage.setScene(scene);
-        this.stage.setTitle(name +" n : "+ id);
+        this.stage.setTitle(mermaid.getName() +" n : "+ id);
         //contraintes sur le gridPane
         root.getColumnConstraints().setAll(
                 new ColumnConstraints(25, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE),
@@ -115,7 +111,7 @@ public class MermaidVisualizer extends Parent {
 
     public void refresh(){
         //refresh du nom du mermaid
-        this.stage.setTitle(name +"  Id:"+ id);
+        this.stage.setTitle(mermaid.getName() +"  Id:"+ id);
         //refresh de la clock
         root.getChildren().remove(clockVisualizer);
         ClockVisualizer newclockVisualizer = new ClockVisualizer(mermaid);
@@ -142,9 +138,8 @@ public class MermaidVisualizer extends Parent {
         GridPane.setConstraints(pumpVisualizer,1,1);
         root.getChildren().add(pumpVisualizer);
         //lance l'animation pour chaque appel de nouvelle profondeur
-        if ( !depthmemory.equals(mermaid.getDepth()) ){
-            animationVisualizer.Dive(depthmemory);
-            depthmemory = mermaid.getDepth();
+        if ( !(mermaid.getDepthToGo()).equals(mermaid.getDepth()) && !mermaid.getDiving() ){
+            animationVisualizer.Dive();
         }
 
     }

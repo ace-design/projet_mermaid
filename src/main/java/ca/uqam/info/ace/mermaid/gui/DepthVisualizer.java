@@ -8,15 +8,9 @@ import javafx.scene.text.Text;
 public class DepthVisualizer extends Parent {
 
     public DepthVisualizer (Mermaid mermaid) {
-        if (mermaid.getDiving()) {
-            Text text = new Text("Go to depth : " + mermaid.getDepth());
-            this.getChildren().add(text);
-        }
-        else {
             Text text = new Text("Depth : " + mermaid.getDepth());
             this.getChildren().add(text);
-
             }
         }
 
-}
+

@@ -18,6 +18,7 @@ public class Mermaid implements Visualizable {
     private Pump pump;
     private ArrayList<Sensor> listSensor;
     private IntegerProperty depth;
+    private IntegerProperty depthToGo;
     private Integer depthMax;
     private Integer speed;
     private Integer speedMax;
@@ -49,6 +50,10 @@ public class Mermaid implements Visualizable {
     public Integer getDepthMax() {
         return depthMax;
     }
+    public Integer getDepthToGo() { return depthToGo.get(); }
+    public void setDepthToGo(Integer depthToGo) {
+        this.depthToGo.set(depthToGo);
+    }
     public Integer getDepth() { return depth.get(); }
     public void setDepth(Integer depth) {
         this.depth.set(depth);
@@ -62,8 +67,8 @@ public class Mermaid implements Visualizable {
     public void setName(String name) {
         this.name.set(name);
     }
-    public StringProperty getName() {
-        return name;
+    public String getName() {
+        return name.get();
     }
     public Integer getId() {
         return id;
@@ -80,6 +85,7 @@ public class Mermaid implements Visualizable {
         this.depthMax = ((Long) ((JSONObject) config.get("generalParam")).get("depthMax")).intValue();
         this.speedMax = ((Long) ((JSONObject) config.get("generalParam")).get("speedMax")).intValue();
         this.depth = new SimpleIntegerProperty(((Long) mermaidObject.get("depth")).intValue());
+        this.depthToGo= new SimpleIntegerProperty(((Long) mermaidObject.get("depth")).intValue());
         this.id = ((Long) mermaidObject.get("id")).intValue();
         this.pump = new Pump();
         this.name = new SimpleStringProperty((String) mermaidObject.get("name"));
@@ -90,7 +96,7 @@ public class Mermaid implements Visualizable {
             JSONObject sensor = (JSONObject) scalarSensorArray.get(i);
             this.listSensor.add(new Sensor(this ,(String) sensor.get("name"),((Long) sensor.get("value")).doubleValue(),lawsFactory.getLaw((String) sensor.get("law"),depth.get(),0)));
         }
-        this.clock = new Clock(duration, periode, listSensor);
+        this.clock = new Clock(duration, periode, this);
         this.diving = new SimpleBooleanProperty(false);
         this.memory = new Memory(name.get());
     }
@@ -106,6 +112,7 @@ public class Mermaid implements Visualizable {
         MermaidListener.Listener(diving,v);
         MermaidListener.Listener(name,v);
         MermaidListener.Listener(depth,v);
+        MermaidListener.Listener(depthToGo,v);
     }
 }
 

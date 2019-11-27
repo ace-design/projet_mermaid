@@ -51,7 +51,7 @@ public class StartVisualizer extends Application {
             Stage stage = new Stage();
             MermaidVisualizer mermaidVisualizer = new MermaidVisualizer(id, stage);
             mermaidVisualizer.attach(MermaidRegistry.GLOBAL_REGISTRY.fetch(id));
-            Button btn = new Button(MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getName().get());
+            Button btn = new Button(MermaidRegistry.GLOBAL_REGISTRY.fetch(id).getName());
             btn.setOnAction((ActionEvent event) -> {
                 stage.show();
             });

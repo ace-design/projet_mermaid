@@ -13,3 +13,7 @@ public class Whale implements Law {
         return (this.value);
     }
 }
+
+
+
+

@@ -50,6 +50,9 @@ Mermaid :
     Recupérer le status de la pompe :
       |GET| http://localhost:8080/mermaid/{id}/pump/status
 
+    Recupérer la mémoire du mermaid :
+      |GET| http://localhost:8080/mermaid/{id}/memory
+
 Capteur :
 
     Recupérer/Modifier le nom du capteur scalaire n°{id}  :

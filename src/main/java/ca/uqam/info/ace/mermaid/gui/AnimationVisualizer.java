@@ -28,12 +28,12 @@ public class AnimationVisualizer extends Parent {
         this.getChildren().add(pane);
     }
 
-    public void Dive(Integer depthmemory){
+    public void Dive(){
         mermaid.setDiving(true);
-        double depthVisuel = (mermaid.getDepth() *((225.0)/mermaid.getDepthMax())); //pour une fenetre de hauteur max 400px, 225 etant la limite du ciel en px
+        double depthVisuel = (mermaid.getDepthToGo() *((225.0)/mermaid.getDepthMax())); //pour une fenetre de hauteur max 400px, 225 etant la limite du ciel en px
         TranslateTransition transition = new TranslateTransition();
-        int gapDepth = Math.abs(mermaid.getDepth()-depthmemory);
-        transition.setDuration(Duration.millis(((int)(0.5*gapDepth*mermaid.getSpeed())+100)));
+        int gapDepth = Math.abs(mermaid.getDepth()-mermaid.getDepthToGo());
+        transition.setDuration(Duration.millis((gapDepth/mermaid.getSpeed())*1000+100));
         transition.setToY(depthVisuel);
         transition.setNode(floteur);
         transition.play();
