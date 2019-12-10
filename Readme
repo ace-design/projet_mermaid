@@ -11,7 +11,7 @@ depuis le repertoire du projet (présence du fichier POM.xml) executer en ligne 
 --> mvn package
 --> mvn exec:java
 
-avant de lancer la simulation vous pouvez definir ses parametre dans un fichier de configuration dans le fichier config.JSON
+avant de lancer la simulation vous pouvez definir ses parametres dans un fichier de configuration dans le fichier config.JSON
 dans les ressources du projet
 
  à l'aide d'un navigateur  (browser web, cURL, ...) on peut agir sur le demonstrateur par des requettes HTTP avec l'adresse URL suivante
